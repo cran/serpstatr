@@ -51,6 +51,7 @@ PPC, online visibility and other metrics.
 }
 
 \examples{
+\dontrun{
 api_token <- 'api_token'
 sst_sa_domains_info(
   api_token     = api_token,
@@ -58,4 +59,5 @@ sst_sa_domains_info(
   se            = 'g_us',
   return_method = 'df'
 )$data
+}
 }

@@ -28,6 +28,8 @@ country names.
 }
 
 \examples{
+\dontrun{
 api_token <- 'api_token'
 sst_sa_database_info(api_token)$data
+}
 }

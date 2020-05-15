@@ -25,14 +25,16 @@ Make a request to Serpstat API endpoint
 \examples{
 \donttest{
 api_params <- list(
-    query = 'serpstat.com',
-    page  = 1,
-    size  = 5
-    )
-serpstatr:::sst_call_api_method(
+  query = 'serpstat.com',
+  page  = 1,
+  size  = 5
+  )
+tryCatch({
+  serpstatr:::sst_call_api_method(
     api_token  = 'api_token',
     api_method = 'SerpstatLimitsProcedure.getStats',
     api_params = api_params
     )
-    }
+})
+}
 }

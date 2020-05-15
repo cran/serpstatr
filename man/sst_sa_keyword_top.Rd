@@ -31,6 +31,7 @@ organic results, paid results and different types of SERP features.
 }
 
 \examples{
+\dontrun{
 api_token <- 'api_token'
 sst_sa_keyword_top(
   api_token = api_token,
@@ -38,4 +39,5 @@ sst_sa_keyword_top(
   se        = 'g_us',
   top_size  = 10
 )
+}
 }

@@ -87,6 +87,7 @@ with a number of metrics for each keyword.
 }
 
 \examples{
+\dontrun{
 api_token <- 'api_token'
 sst_sa_domain_keywords(
   api_token     = api_token,
@@ -102,4 +103,5 @@ sst_sa_domain_keywords(
   size          = 10,
   return_method = 'df'
 )$data
+}
 }

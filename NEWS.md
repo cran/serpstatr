@@ -1,3 +1,9 @@
+# serpstatr 0.0.2
+
+* Remove all tests dependent on external API.
+* Move API error handling from tests to main utility function sst_call_api_method.
+
+
 # serpstatr 0.0.1
 
 Add new functions. 

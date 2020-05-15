@@ -20,16 +20,3 @@ Every API call returns a JSON object. This object is transformed to a list.
 Depending on return_method parameter the data element of this list will be a
 list or data.frame.
 }
-\examples{
-\donttest{
-class(
-serpstatr:::sst_return_check(
-  response_content = serpstatr:::sst_call_api_method(
-    api_token  = 'api_token',
-    api_method = 'SerpstatLimitsProcedure.getStats',
-    api_params = NULL
-  ),
-  return_method    = 'df')$error
-)
-  }
-}

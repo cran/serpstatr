@@ -14,8 +14,10 @@
 #' @return Returns country name, se parameter value and local search engine
 #'   domain name for each country.
 #' @examples
+#' \dontrun{
 #' api_token <- 'api_token'
 #' sst_sa_database_info(api_token)$data
+#' }
 #' @export
 sst_sa_database_info <- function(api_token, return_method = 'list') {
   response_content <- sst_call_api_method(
@@ -39,8 +41,10 @@ sst_sa_database_info <- function(api_token, return_method = 'list') {
 #'   information about user and
 #'   \href{https://serpstat.com/page/extension-en/}{Serpstat plugin} limits.
 #' @examples
+#' \dontrun{
 #' api_token <- 'api_token'
 #' sst_sa_stats(api_token)$summary_info$left_lines
+#' }
 #' @export
 sst_sa_stats <- function(api_token) {
   response_content <- sst_call_api_method(
@@ -68,6 +72,7 @@ sst_sa_stats <- function(api_token) {
 #'   \href{https://serpstat.com/api/14-domain-summary-report-domaininfo/}{aggregated
 #'   stats} for each domain.
 #' @examples
+#' \dontrun{
 #' api_token <- 'api_token'
 #' sst_sa_domains_info(
 #'   api_token     = api_token,
@@ -75,6 +80,7 @@ sst_sa_stats <- function(api_token) {
 #'   se            = 'g_us',
 #'   return_method = 'df'
 #' )$data
+#' }
 #' @export
 sst_sa_domains_info <- function(api_token,
                                 domains,
@@ -141,6 +147,7 @@ sst_sa_domains_info <- function(api_token,
 #'   \href{https://serpstat.com/api/18-domain-organic-keywords-domainkeywords/}{a
 #'   number metrics} for each keyword.
 #' @examples
+#' \dontrun{
 #' api_token <- 'api_token'
 #' sst_sa_domain_keywords(
 #'   api_token     = api_token,
@@ -156,6 +163,7 @@ sst_sa_domains_info <- function(api_token,
 #'   size          = 10,
 #'   return_method = 'df'
 #' )$data
+#' }
 #' @export
 sst_sa_domain_keywords <- function(api_token,
                                    domain,
@@ -205,6 +213,7 @@ sst_sa_domain_keywords <- function(api_token,
 #'   \href{https://serpstat.com/api/31-keyword-overview-keywordinfo/}{a number
 #'   of metrics} for each keyword.
 #' @examples
+#' \dontrun{
 #' api_token <- 'api_token'
 #' sst_sa_keywords_info(
 #'   api_token     = api_token,
@@ -213,6 +222,7 @@ sst_sa_domain_keywords <- function(api_token,
 #'   sort          = list(cost = 'asc'),
 #'   return_method = 'df'
 #' )$data
+#' }
 #' @export
 sst_sa_keywords_info <- function(api_token,
                                  keywords,
@@ -261,6 +271,7 @@ sst_sa_keywords_info <- function(api_token,
 #'   \href{https://serpstat.com/api/29-phrase-match-keywords-keywords/}{a number
 #'   of metrics} for each keyword.
 #' @examples
+#' \dontrun{
 #' api_token <- 'api_token'
 #' sst_sa_keywords(
 #'   api_token     = api_token,
@@ -272,6 +283,7 @@ sst_sa_keywords_info <- function(api_token,
 #'   size          = 10,
 #'   return_method = 'df'
 #' )$data
+#' }
 #' @export
 sst_sa_keywords <- function(api_token,
                             keyword,
@@ -314,6 +326,7 @@ sst_sa_keywords <- function(api_token,
 #'   \href{https://serpstat.com/api/37-top-for-a-keyword-keywordtop/}{the
 #'   data about search engine results page} for the keyword.
 #' @examples
+#' \dontrun{
 #' api_token <- 'api_token'
 #' sst_sa_keyword_top(
 #'   api_token = api_token,
@@ -321,6 +334,7 @@ sst_sa_keywords <- function(api_token,
 #'   se        = 'g_us',
 #'   top_size  = 10
 #' )
+#' }
 #' @export
 sst_sa_keyword_top <- function(api_token, keyword, se, top_size = 100) {
   response_content <- sst_call_api_method(

@@ -26,6 +26,8 @@ of API rows left.
 }
 
 \examples{
+\dontrun{
 api_token <- 'api_token'
 sst_sa_stats(api_token)$summary_info$left_lines
+}
 }

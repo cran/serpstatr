@@ -10,16 +10,18 @@
 #' @examples
 #' \donttest{
 #' api_params <- list(
-#'     query = 'serpstat.com',
-#'     page  = 1,
-#'     size  = 5
-#'     )
-#' serpstatr:::sst_call_api_method(
+#'   query = 'serpstat.com',
+#'   page  = 1,
+#'   size  = 5
+#'   )
+#' tryCatch({
+#'   serpstatr:::sst_call_api_method(
 #'     api_token  = 'api_token',
 #'     api_method = 'SerpstatLimitsProcedure.getStats',
 #'     api_params = api_params
 #'     )
-#'     }
+#' })
+#' }
 sst_call_api_method <- function(api_token, api_method, api_params = NULL) {
   tryCatch({
     api_response <- httr::POST(
@@ -32,7 +34,19 @@ sst_call_api_method <- function(api_token, api_method, api_params = NULL) {
       encode = 'json',
       httr::add_headers(token = api_token)
       )
-    httr::content(api_response)
+    api_response <- httr::content(api_response)
+
+    if('list' %in% class(api_response)) {
+      return(api_response)
+    } else {
+      stop(
+        paste0(
+          'There is a problem with Serpstat API. If you get this error, ',
+          'please contact support at https://serpstat.com/support/ ',
+          'with the details of what you are doing.'
+          )
+        )
+    }
   }, error = function(e) {
     print(e)
   })
@@ -48,18 +62,6 @@ sst_call_api_method <- function(api_token, api_method, api_params = NULL) {
 #' @param return_method Accepted values are 'list' to return data object as list
 #'   or 'df' to return data object as data.frame.
 #' @return response_content with a data object as list or data.frame.
-#' @examples
-#' \donttest{
-#' class(
-#' serpstatr:::sst_return_check(
-#'   response_content = serpstatr:::sst_call_api_method(
-#'     api_token  = 'api_token',
-#'     api_method = 'SerpstatLimitsProcedure.getStats',
-#'     api_params = NULL
-#'   ),
-#'   return_method    = 'df')$error
-#' )
-#'   }
 sst_return_check <- function(response_content, return_method) {
 
   if(!return_method %in% c('list', 'df')) {

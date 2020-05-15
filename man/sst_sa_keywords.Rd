@@ -81,6 +81,7 @@ level.
 }
 
 \examples{
+\dontrun{
 api_token <- 'api_token'
 sst_sa_keywords(
   api_token     = api_token,
@@ -92,4 +93,5 @@ sst_sa_keywords(
   size          = 10,
   return_method = 'df'
 )$data
+}
 }

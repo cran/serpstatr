@@ -51,6 +51,7 @@ competition level.
 }
 
 \examples{
+\dontrun{
 api_token <- 'api_token'
 sst_sa_keywords_info(
   api_token     = api_token,
@@ -59,4 +60,5 @@ sst_sa_keywords_info(
   sort          = list(cost = 'asc'),
   return_method = 'df'
 )$data
+}
 }
