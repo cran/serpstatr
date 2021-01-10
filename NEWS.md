@@ -1,3 +1,14 @@
+# serpstatr 0.1.0
+
+Add rank tracker API functions:
+
+* sst_rt_project_regions() - all regions for a project
+* sst_rt_serp_history() - search results history in search region by keyword
+* sst_rt_positions_history() - ranking history for the domain or URL in 
+    selected search region
+* sst_rt_competitors() - data on competitors in search results
+
+
 # serpstatr 0.0.2
 
 * Remove all tests dependent on external API.

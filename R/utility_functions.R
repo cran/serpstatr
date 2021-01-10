@@ -77,10 +77,14 @@ sst_return_check <- function(response_content, return_method) {
     )
   }
 
-  if(return_method == 'list') {
-    final_data <- response_content$result$data
+  if(is.null(response_content$result$data)) {
+    final_data <- response_content$result
   } else {
-    final_data <- sst_lists_to_df(response_content$result$data)
+    final_data <- response_content$result$data
+  }
+
+  if(return_method != 'list') {
+    final_data <- sst_lists_to_df(final_data)
   }
   return(
     list(

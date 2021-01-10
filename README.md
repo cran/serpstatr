@@ -15,8 +15,10 @@ All package functions names have the same structure:
 How to use
 ----------
 
-Get your [API key](https://serpstat.com/users/profile/). It is required
+1. Get your [API key](https://serpstat.com/users/profile/). It is required
 in all package functions.
+
+2. Search analytics
 
 Check if you have enough limits to make API calls
 
@@ -45,6 +47,33 @@ Call functions to get keywords data:
       sort          = list(cost = 'asc'),
       return_method = 'df'
     )$data
+    
+3. Rank tracker
+
+Call functions to get the data on your rankings:
+
+-   sst_rt_project_regions() - all regions for a project
+-   sst_rt_serp_history() - search results history in search region by keyword
+-   sst_rt_positions_history() - ranking history for the domain or URL in 
+    selected search region
+-   sst_rt_competitors() - data on competitors in search results
+
+<!-- -->
+
+    sst_rt_positions_history(
+      api_token     = api_token,
+      project_id    = project_id,
+      region_id     = region_id,
+      date_from     = '2020-12-01',
+      date_to       = '2020-12-30',
+      keywords      = c('seo', 'ppc', 'serpstat'),
+      url           = 'serpstat.com',
+      sort          = 'keyword',
+      order         = 'desc',
+      page          = 1,
+      size          = 100,
+      return_method = 'list'
+      )$data$keywords
 
 Installation
 ------------
@@ -57,4 +86,4 @@ Issues
 ------
 
 Send all issues on [GitLab
-page](https://gitlab.com/alexdanilin/serpstatr/issues).
+page](https://gitlab.com/alexdanilin/serpstatr/-/issues).

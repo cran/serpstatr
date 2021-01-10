@@ -13,7 +13,7 @@ sst_sa_stats(api_token)
 \value{
 Returns a number of API rows left. Also returns some additional
   information about user and
-  \href{https://serpstat.com/page/extension-en/}{Serpstat plugin} limits.
+  \href{https://serpstat.com/extension/}{Serpstat plugin} limits.
 }
 \description{
 With most API request you spend some amount of API rows. The total amount of

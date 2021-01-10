@@ -39,7 +39,7 @@ sst_sa_database_info <- function(api_token, return_method = 'list') {
 #' @inheritParams sst_sa_database_info
 #' @return Returns a number of API rows left. Also returns some additional
 #'   information about user and
-#'   \href{https://serpstat.com/page/extension-en/}{Serpstat plugin} limits.
+#'   \href{https://serpstat.com/extension/}{Serpstat plugin} limits.
 #' @examples
 #' \dontrun{
 #' api_token <- 'api_token'
