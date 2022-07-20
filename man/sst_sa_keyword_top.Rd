@@ -18,21 +18,24 @@ sst_sa_keyword_top(api_token, keyword, se, top_size = 100)
 \item{top_size}{(optional) Set the number of URLs to get in response.}
 }
 \value{
-Returns a list with
-  \href{https://serpstat.com/api/37-top-for-a-keyword-keywordtop/}{the
-  data about search engine results page} for the keyword.
+Returns a list with the data about search engine results page for the keyword.
 }
 \description{
 Returns a list of results (URLs) from search engine results page (SERP) including
 organic results, paid results and different types of SERP features.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/598-keyword-top-v4-serpstatkeywordproceduregetkeywordtop/}{here}.
+}
+
 \section{API rows consumption}{
  1 per URL in response.
 }
 
 \examples{
 \dontrun{
-api_token <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_keyword_top(
   api_token = api_token,
   keyword   = 'serpstat',

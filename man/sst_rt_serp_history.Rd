@@ -8,9 +8,9 @@ sst_rt_serp_history(
   api_token,
   project_id,
   region_id,
-  date_from,
-  date_to,
-  keywords,
+  date_from = Sys.Date() - 8,
+  date_to = Sys.Date() - 1,
+  keywords = NULL,
   sort = "keyword",
   order = "desc",
   page = 1,
@@ -31,14 +31,16 @@ ID would be 12345.}
 \code{\link{sst_rt_project_regions}}.}
 
 \item{date_from}{(optional) The date string in 'YYYY-MM-DD' format to
-specify the initial date of retrieved data.}
+specify the initial date of retrieved data. Default value is current date
+minus 8 days.}
 
 \item{date_to}{(optional) The date string in 'YYYY-MM-DD' format to
 specify the final date of retrieved data. Must not exceed date_from + 30
-days.}
+days. Default is yesterday.}
 
 \item{keywords}{(optional) A vector of keywords for witch the data should be
-retrieved. Maximum 1000 keywords per request.}
+retrieved. Maximum 1000 keywords per request. By default all the data for
+all keywords in the project is returned.}
 
 \item{sort}{(optional) Must be one of 'keyword' (default) to sort the
 results alphabetically or 'date' to sort the results by date.}
@@ -46,10 +48,10 @@ results alphabetically or 'date' to sort the results by date.}
 \item{order}{(optional) The sorting order. Must be one of string 'desc'
 (default) for descending sorting or 'asc' for ascending sorting.}
 
-\item{page}{(optional) Page number if there are many pages in response. The
+\item{page}{(optional) Response page number if there are many pages in response. The
 default value is 1.}
 
-\item{size}{(optional) Page size. Must be one of 20, 50, 100, 200, 500.The
+\item{size}{(optional) Response page size. Must be one of 20, 50, 100, 200, 500.The
 default value is 100.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
@@ -60,16 +62,21 @@ Returns the search engine results for specific dates and region
   including positions and URLs.
 }
 \description{
-This method method returns top 100 search results in Google and top 50
+This method returns top 100 search results in Google and top 50
 search results in Yandex by region and project keywords.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/642-serp-history-by-the-project-keywords-getkeywordsserpresultshistory/}{here}.
+}
+
 \section{API rows consumption}{
  0
 }
 
 \examples{
 \dontrun{
-api_token  <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 project_id <- 12345
 region_id  <- sst_rt_project_regions(
   api_token  = api_token,

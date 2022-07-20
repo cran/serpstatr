@@ -23,13 +23,18 @@ parameter to specify from what country do you want to get the data. This
 method returns all acceptable values for se parameter with corresponding
 country names.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/406-list-of-available-v4-databases-serpstatdatabaseproceduregetdatabaseinfo/}{here}.
+}
+
 \section{API rows consumption}{
  0
 }
 
 \examples{
 \dontrun{
-api_token <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_database_info(api_token)$data
 }
 }

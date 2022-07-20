@@ -28,14 +28,17 @@ details.}
 return data object as list or 'df' to return data object as data.frame.}
 }
 \value{
-Returns
-  \href{https://serpstat.com/api/31-keyword-overview-keywordinfo/}{a number
-  of metrics} for each keyword.
+Returns a number of metrics for each keyword.
 }
 \description{
 Returns a number of metrics for each keyword like search volume, CPC and
 competition level.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/600-keyword-info-v4-serpstatkeywordproceduregetkeywordsinfo/}{here}.
+}
+
 \section{API rows consumption}{
  1 per keyword in request.
 }
@@ -52,7 +55,7 @@ competition level.
 
 \examples{
 \dontrun{
-api_token <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_keywords_info(
   api_token     = api_token,
   keywords      = c('seo', 'ppc', 'serpstat'),

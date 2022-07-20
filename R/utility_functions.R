@@ -16,7 +16,7 @@
 #'   )
 #' tryCatch({
 #'   serpstatr:::sst_call_api_method(
-#'     api_token  = 'api_token',
+#'     api_token  = Sys.getenv('SERPSTAT_API_TOKEN'),
 #'     api_method = 'SerpstatLimitsProcedure.getStats',
 #'     api_params = api_params
 #'     )

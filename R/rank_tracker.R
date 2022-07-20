@@ -4,6 +4,9 @@
 #' regions. This method returns all the regions in your Serpstat project.
 #' You will need the results of this method to get rankings in selected region.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/620-list-of-project-regions-with-their-statuses-getprojectregions/}{here}.
+#'
 #' @section API rows consumption: 0
 #'
 #' @param api_token (required) Serpstat API token from
@@ -23,9 +26,11 @@
 #' sst_rt_project_regions(api_token = api_token, project_id = project_id)
 #' }
 #' @export
-sst_rt_project_regions <- function(api_token,
-                                 project_id,
-                                 return_method = 'list') {
+sst_rt_project_regions <- function(
+    api_token,
+    project_id,
+    return_method = 'list'
+    ){
   api_params <- list(
     projectId = as.integer(project_id)
   )
@@ -39,34 +44,40 @@ sst_rt_project_regions <- function(api_token,
 
 #' Get search results history in search region by keywords
 #'
-#' This method method returns top 100 search results in Google and top 50
+#' This method returns top 100 search results in Google and top 50
 #' search results in Yandex by region and project keywords.
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/642-serp-history-by-the-project-keywords-getkeywordsserpresultshistory/}{here}.
+#'
 #'
 #' @section API rows consumption: 0
 #'
 #' @param region_id (required) The ID of a region returned by
 #'   \code{\link{sst_rt_project_regions}}.
 #' @param date_from (optional) The date string in 'YYYY-MM-DD' format to
-#'   specify the initial date of retrieved data.
+#'   specify the initial date of retrieved data. Default value is current date
+#'   minus 8 days.
 #' @param date_to (optional) The date string in 'YYYY-MM-DD' format to
 #'   specify the final date of retrieved data. Must not exceed date_from + 30
-#'   days.
+#'   days. Default is yesterday.
 #' @param keywords (optional) A vector of keywords for witch the data should be
-#'   retrieved. Maximum 1000 keywords per request.
+#'   retrieved. Maximum 1000 keywords per request. By default all the data for
+#'   all keywords in the project is returned.
 #' @param sort (optional) Must be one of 'keyword' (default) to sort the
 #'   results alphabetically or 'date' to sort the results by date.
 #' @param order (optional) The sorting order. Must be one of string 'desc'
 #'   (default) for descending sorting or 'asc' for ascending sorting.
-#' @param page (optional) Page number if there are many pages in response. The
+#' @param page (optional) Response page number if there are many pages in response. The
 #'   default value is 1.
-#' @param size (optional) Page size. Must be one of 20, 50, 100, 200, 500.The
+#' @param size (optional) Response page size. Must be one of 20, 50, 100, 200, 500.The
 #'   default value is 100.
 #' @inheritParams sst_rt_project_regions
 #' @return Returns the search engine results for specific dates and region
 #'   including positions and URLs.
 #' @examples
 #' \dontrun{
-#' api_token  <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' project_id <- 12345
 #' region_id  <- sst_rt_project_regions(
 #'   api_token  = api_token,
@@ -87,17 +98,19 @@ sst_rt_project_regions <- function(api_token,
 #' )
 #' }
 #' @export
-sst_rt_serp_history <- function(api_token,
-                                project_id,
-                                region_id,
-                                date_from,
-                                date_to,
-                                keywords,
-                                sort          = 'keyword',
-                                order         = 'desc',
-                                page          = 1,
-                                size          = 100,
-                                return_method = 'list') {
+sst_rt_serp_history <- function(
+    api_token,
+    project_id,
+    region_id,
+    date_from     = Sys.Date() - 8,
+    date_to       = Sys.Date() - 1,
+    keywords      = NULL,
+    sort          = 'keyword',
+    order         = 'desc',
+    page          = 1,
+    size          = 100,
+    return_method = 'list'
+    ){
   api_params <- list(
     projectId       = as.integer(project_id),
     projectRegionId = as.integer(region_id),
@@ -122,17 +135,21 @@ sst_rt_serp_history <- function(api_token,
 #' This method method returns the rankings for specified domain is selected
 #'   search region.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/632-poluchenie-spiska-stranitc-i-ih-pozitcij-po-domenu-geturlsserpresultshistory/}{here}.
+#'
+#'
 #' @section API rows consumption: 0
 #'
 #' @param url (optional) The domain name (e.g. domain.com) or web page address
-#'   (e.g. https://domain.com/page) to get the data for. BY default the
+#'   (e.g. https://domain.com/page) to get the data for. By default the
 #'   results are returned for the projects' domain name.
 #' @inheritParams sst_rt_serp_history
 #' @return Returns positions of selected domain in search engine results in
 #'   selected region with corresponding URLs for these positions.
 #' @examples
 #' \dontrun{
-#' api_token  <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' project_id <- 12345
 #' region_id  <- sst_rt_project_regions(
 #'   api_token  = api_token,
@@ -154,25 +171,27 @@ sst_rt_serp_history <- function(api_token,
 #' )
 #' }
 #' @export
-sst_rt_positions_history <- function(api_token,
-                                     project_id,
-                                     region_id,
-                                     date_from,
-                                     date_to,
-                                     keywords,
-                                     url,
-                                     sort          = 'keyword',
-                                     order         = 'desc',
-                                     page          = 1,
-                                     size          = 100,
-                                     return_method = 'list') {
+sst_rt_positions_history <- function(
+    api_token,
+    project_id,
+    region_id,
+    date_from     = Sys.Date() - 8,
+    date_to       = Sys.Date() - 1,
+    keywords      = NULL,
+    url           = NULL,
+    sort          = 'keyword',
+    order         = 'desc',
+    page          = 1,
+    size          = 100,
+    return_method = 'list'
+    ){
   api_params <- list(
     projectId       = as.integer(project_id),
     projectRegionId = as.integer(region_id),
     dateFrom        = date_from,
     dateTo          = date_to,
     keywords        = as.list(keywords),
-    domain          = url,
+    domain          = paste0(url, ''),
     sort            = sort,
     order           = order,
     page            = page,
@@ -191,15 +210,19 @@ sst_rt_positions_history <- function(api_token,
 #' This method method returns the competing in top20 search results domains
 #'   that rank for at least two keywords that are added the project.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/622-list-of-domains-from-top-20-by-project-keywords-gettopcompetitorsdomainshistory/}{here}.
+#'
 #' @section API rows consumption: 0
 #'
 #' @param region_id (required) The ID of a region returned by
 #'   \code{\link{sst_rt_project_regions}}.
 #' @param date_from (optional) The date string in 'YYYY-MM-DD' format to
-#'   specify the initial date of retrieved data.
+#'   specify the initial date of retrieved data. Default value is current date
+#'   minus 8 days.
 #' @param date_to (optional) The date string in 'YYYY-MM-DD' format to
 #'   specify the final date of retrieved data. Must not exceed date_from + 30
-#'   days.
+#'   days.  Default value is yesterday.
 #' @param sort (optional) Must be one of 'sum_traffic' (default, domain search
 #'   traffic distribution), 'keywords_count' (number of keywords),
 #'   'avg_position' (average domain position), 'position_ranges' (ranges of
@@ -212,11 +235,11 @@ sst_rt_positions_history <- function(api_token,
 #'   'avg_position_bottom' to sort by the average position in search ads blocks.
 #' @param order (optional) The sorting order. Must be one of string 'desc'
 #'   (default) for descending sorting or 'asc' for ascending sorting.
-#' @param page (optional) Page number if there are many pages in response. The
+#' @param page (optional) Response page number if there are many pages in response. The
 #'   default value is 1.
-#' @param size (optional) Page size. Must be one of 20, 50, 100, 200, 500.The
+#' @param size (optional) Response page size. Must be one of 20, 50, 100, 200, 500.The
 #'   default value is 100.
-#' @param domains (optional) A vector of domain names for witch the data
+#' @param domains (optional) A vector of domain names for which the data
 #'   should be retrieved. By default the data is retrieved for all domains
 #'   that rank for at least two keywords that are added to the project.
 #' @inheritParams sst_rt_project_regions
@@ -224,7 +247,7 @@ sst_rt_positions_history <- function(api_token,
 #'   the domains by date.
 #' @examples
 #' \dontrun{
-#' api_token  <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' project_id <- 12345
 #' region_id  <- sst_rt_competitors(
 #'   api_token  = api_token,
@@ -246,18 +269,20 @@ sst_rt_positions_history <- function(api_token,
 #' )
 #' }
 #' @export
-sst_rt_competitors <- function(api_token,
-                               project_id,
-                               region_id,
-                               date_from,
-                               date_to,
-                               domains,
-                               sort          = 'sum_traffic',
-                               sort_range    = 'top1',
-                               order         = 'desc',
-                               page          = 1,
-                               size          = 100,
-                               return_method = 'list') {
+sst_rt_competitors <- function(
+    api_token,
+    project_id,
+    region_id,
+    date_from     = Sys.Date() - 8,
+    date_to       = Sys.Date() - 1,
+    domains       = NULL,
+    sort          = 'sum_traffic',
+    sort_range    = 'top1',
+    order         = 'desc',
+    page          = 1,
+    size          = 100,
+    return_method = 'list'
+    ){
   api_params <- list(
     projectId       = as.integer(project_id),
     projectRegionId = as.integer(region_id),

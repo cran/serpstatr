@@ -28,14 +28,17 @@ details.}
 return data object as list or 'df' to return data object as data.frame.}
 }
 \value{
-Returns
-  \href{https://serpstat.com/api/14-domain-summary-report-domaininfo/}{aggregated
-  stats} for each domain.
+Returns aggregated stats for each domain.
 }
 \description{
 Returns the number of keywords for each domain in SEO and
 PPC, online visibility and other metrics.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/412-summarnij-otchet-po-domenu-v4-serpstatdomainproceduregetdomainsinfo/}{here}.
+}
+
 \section{API rows consumption}{
  1 per domain in request.
 }
@@ -52,7 +55,7 @@ PPC, online visibility and other metrics.
 
 \examples{
 \dontrun{
-api_token <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_domains_info(
   api_token     = api_token,
   domains       = c('amazon.com', 'ebay.com'),

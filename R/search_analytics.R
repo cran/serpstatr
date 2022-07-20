@@ -5,6 +5,9 @@
 #' method returns all acceptable values for se parameter with corresponding
 #' country names.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/406-list-of-available-v4-databases-serpstatdatabaseproceduregetdatabaseinfo/}{here}.
+#'
 #' @section API rows consumption: 0
 #'
 #' @param api_token (required) Serpstat API token from
@@ -15,11 +18,11 @@
 #'   domain name for each country.
 #' @examples
 #' \dontrun{
-#' api_token <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_sa_database_info(api_token)$data
 #' }
 #' @export
-sst_sa_database_info <- function(api_token, return_method = 'list') {
+sst_sa_database_info <- function(api_token, return_method = 'list'){
   response_content <- sst_call_api_method(
     api_token  = api_token,
     api_method = 'SerpstatDatabaseProcedure.getDatabaseInfo'
@@ -42,11 +45,11 @@ sst_sa_database_info <- function(api_token, return_method = 'list') {
 #'   \href{https://serpstat.com/extension/}{Serpstat plugin} limits.
 #' @examples
 #' \dontrun{
-#' api_token <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_sa_stats(api_token)$summary_info$left_lines
 #' }
 #' @export
-sst_sa_stats <- function(api_token) {
+sst_sa_stats <- function(api_token){
   response_content <- sst_call_api_method(
     api_token  = api_token,
     api_method = 'SerpstatLimitsProcedure.getStats'
@@ -59,6 +62,9 @@ sst_sa_stats <- function(api_token) {
 #' Returns the number of keywords for each domain in SEO and
 #' PPC, online visibility and other metrics.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/412-summarnij-otchet-po-domenu-v4-serpstatdomainproceduregetdomainsinfo/}{here}.
+#'
 #' @section API rows consumption: 1 per domain in request.
 #'
 #' @param domains (required) A vector of domain names to analyze.
@@ -68,12 +74,10 @@ sst_sa_stats <- function(api_token) {
 #'   details.
 #' @inheritParams sst_sa_database_info
 #' @inheritSection sst_sa_domain_keywords Sorting
-#' @return Returns
-#'   \href{https://serpstat.com/api/14-domain-summary-report-domaininfo/}{aggregated
-#'   stats} for each domain.
+#' @return Returns aggregated stats for each domain.
 #' @examples
 #' \dontrun{
-#' api_token <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_sa_domains_info(
 #'   api_token     = api_token,
 #'   domains       = c('amazon.com', 'ebay.com'),
@@ -82,11 +86,13 @@ sst_sa_stats <- function(api_token) {
 #' )$data
 #' }
 #' @export
-sst_sa_domains_info <- function(api_token,
-                                domains,
-                                se,
-                                sort          = NULL,
-                                return_method = 'list') {
+sst_sa_domains_info <- function(
+    api_token,
+    domains,
+    se,
+    sort          = NULL,
+    return_method = 'list'
+    ){
   api_params <- list(
     domains = as.list(domains),
     se      = se,
@@ -105,6 +111,9 @@ sst_sa_domains_info <- function(api_token,
 #' Returns up to 60 000 organic keywords from selected region for the domain
 #' with a number of metrics for each keyword.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/584-top-search-engine-keywords-by-v4-domain-serpstatdomainproceduregetdomainkeywords/}{here}.
+#'
 #' @section API rows consumption: 1 per keyword in response.
 #'
 #' @section Sorting:
@@ -118,11 +127,9 @@ sst_sa_domains_info <- function(api_token,
 #' @section Filtering:
 #'   To filter the results you can use \code{filters} argument. It must be a
 #'   list of named elements. The name of the element must match one of the
-#'   filtering parameters described
-#'   \href{https://serpstat.com/api/61-filtering-and-sorting-results/}{here}.
-#'   You can find all the acceptable values for each parameter there too. For
-#'   example, \code{filters = list(queries_from = 0, queries_to = 10)} would
-#'   narrow the results to include only the keywords that have a search volume
+#'   filtering parameters. See API docs for more details. For example,
+#'   \code{filters = list(queries_from = 0, queries_to = 10)} would narrow
+#'   the results to include only the keywords that have a search volume
 #'   between 0 and 10.
 #'
 #' @param domain (required) Domain to get data for.
@@ -137,18 +144,13 @@ sst_sa_domains_info <- function(api_token,
 #'   details.
 #' @param filters (optional) A list of filtering options. See Filtering for more
 #'   details.
-#' @param page (optional) Page number if there are many pages in response.
-#' @param size (optional) Page size.
-#'   Optional parameters for filtering, sorting
-#'   and walking through the pages of the response are described
-#'   \href{https://serpstat.com/api/61-filtering-and-sorting-results/}{here}.
+#' @param page (optional) Response page number if there are many pages in response.
+#' @param size (optional) Response page size.
 #' @inheritParams sst_sa_database_info
-#' @return Returns
-#'   \href{https://serpstat.com/api/18-domain-organic-keywords-domainkeywords/}{a
-#'   number metrics} for each keyword.
+#' @return Returns a number of metrics for each keyword.
 #' @examples
 #' \dontrun{
-#' api_token <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_sa_domain_keywords(
 #'   api_token     = api_token,
 #'   domain        = 'serpstat.com',
@@ -165,17 +167,19 @@ sst_sa_domains_info <- function(api_token,
 #' )$data
 #' }
 #' @export
-sst_sa_domain_keywords <- function(api_token,
-                                   domain,
-                                   se,
-                                   url           = NULL,
-                                   keywords      = NULL,
-                                   minusKeywords = NULL,
-                                   sort          = NULL,
-                                   filters       = NULL,
-                                   page          = 1,
-                                   size          = 100,
-                                   return_method = 'list') {
+sst_sa_domain_keywords <- function(
+    api_token,
+    domain,
+    se,
+    url           = NULL,
+    keywords      = NULL,
+    minusKeywords = NULL,
+    sort          = NULL,
+    filters       = NULL,
+    page          = 1,
+    size          = 100,
+    return_method = 'list'
+    ){
   api_params <- list(
     domain        = domain,
     se            = se,
@@ -200,6 +204,9 @@ sst_sa_domain_keywords <- function(api_token,
 #' Returns a number of metrics for each keyword like search volume, CPC and
 #' competition level.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/600-keyword-info-v4-serpstatkeywordproceduregetkeywordsinfo/}{here}.
+#'
 #' @section API rows consumption: 1 per keyword in request.
 #'
 #' @param keywords (required) A vector of keywords to analyze.
@@ -209,12 +216,10 @@ sst_sa_domain_keywords <- function(api_token,
 #'   details.
 #' @inheritParams sst_sa_database_info
 #' @inheritSection sst_sa_domain_keywords Sorting
-#' @return Returns
-#'   \href{https://serpstat.com/api/31-keyword-overview-keywordinfo/}{a number
-#'   of metrics} for each keyword.
+#' @return Returns a number of metrics for each keyword.
 #' @examples
 #' \dontrun{
-#' api_token <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_sa_keywords_info(
 #'   api_token     = api_token,
 #'   keywords      = c('seo', 'ppc', 'serpstat'),
@@ -224,11 +229,13 @@ sst_sa_domain_keywords <- function(api_token,
 #' )$data
 #' }
 #' @export
-sst_sa_keywords_info <- function(api_token,
-                                 keywords,
-                                 se,
-                                 sort          = NULL,
-                                 return_method = 'list') {
+sst_sa_keywords_info <- function(
+    api_token,
+    keywords,
+    se,
+    sort          = NULL,
+    return_method = 'list'
+    ){
   api_params <- list(
     keywords = as.list(keywords),
     se       = se,
@@ -248,6 +255,9 @@ sst_sa_keywords_info <- function(api_token,
 #' a number of metrics for each keyword like search volume, CPC and competition
 #' level.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/592-keywords-for-v4-words-serpstatkeywordproceduregetkeywords/}{here}.
+#'
 #' @section API rows consumption: 1 per keyword in response.
 #'
 #' @param keyword (required) A keyword to search for.
@@ -259,20 +269,15 @@ sst_sa_keywords_info <- function(api_token,
 #'   details.
 #' @param filters (optional) A list of filtering options. See Filtering for more
 #'   details.
-#' @param page (optional) Page number if there are many pages in response.
-#' @param size (optional) Page size.
-#'  Optional parameters for filtering, sorting and walking through the pages of
-#'  the response are described
-#'  \href{https://serpstat.com/api/61-filtering-and-sorting-results/}{here}.
+#' @param page (optional) Response page number if there are many pages in response.
+#' @param size (optional) Response page size.
 #' @inheritParams sst_sa_database_info
 #' @inheritSection sst_sa_domain_keywords Sorting
 #' @inheritSection sst_sa_domain_keywords Filtering
-#' @return Returns
-#'   \href{https://serpstat.com/api/29-phrase-match-keywords-keywords/}{a number
-#'   of metrics} for each keyword.
+#' @return Returns a number of metrics for each keyword.
 #' @examples
 #' \dontrun{
-#' api_token <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_sa_keywords(
 #'   api_token     = api_token,
 #'   keyword       = 'serpstat',
@@ -285,15 +290,17 @@ sst_sa_keywords_info <- function(api_token,
 #' )$data
 #' }
 #' @export
-sst_sa_keywords <- function(api_token,
-                            keyword,
-                            se,
-                            minusKeywords = NULL,
-                            sort          = NULL,
-                            filters       = NULL,
-                            page          = 1,
-                            size          = 100,
-                            return_method = 'list') {
+sst_sa_keywords <- function(
+    api_token,
+    keyword,
+    se,
+    minusKeywords = NULL,
+    sort          = NULL,
+    filters       = NULL,
+    page          = 1,
+    size          = 100,
+    return_method = 'list'
+    ){
   api_params <- list(
     keyword       = keyword,
     se            = se,
@@ -315,6 +322,10 @@ sst_sa_keywords <- function(api_token,
 #' Returns a list of results (URLs) from search engine results page (SERP) including
 #' organic results, paid results and different types of SERP features.
 #'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/598-keyword-top-v4-serpstatkeywordproceduregetkeywordtop/}{here}.
+#'
+#'
 #' @section API rows consumption: 1 per URL in response.
 #'
 #' @param keyword (required) A keyword to search for.
@@ -322,12 +333,10 @@ sst_sa_keywords <- function(api_token,
 #'     \code{\link{sst_sa_database_info}}.
 #' @param  top_size (optional) Set the number of URLs to get in response.
 #' @inheritParams sst_sa_database_info
-#' @return Returns a list with
-#'   \href{https://serpstat.com/api/37-top-for-a-keyword-keywordtop/}{the
-#'   data about search engine results page} for the keyword.
+#' @return Returns a list with the data about search engine results page for the keyword.
 #' @examples
 #' \dontrun{
-#' api_token <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_sa_keyword_top(
 #'   api_token = api_token,
 #'   keyword   = 'serpstat',

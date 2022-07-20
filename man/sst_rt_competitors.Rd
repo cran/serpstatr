@@ -8,9 +8,9 @@ sst_rt_competitors(
   api_token,
   project_id,
   region_id,
-  date_from,
-  date_to,
-  domains,
+  date_from = Sys.Date() - 8,
+  date_to = Sys.Date() - 1,
+  domains = NULL,
   sort = "sum_traffic",
   sort_range = "top1",
   order = "desc",
@@ -32,13 +32,14 @@ ID would be 12345.}
 \code{\link{sst_rt_project_regions}}.}
 
 \item{date_from}{(optional) The date string in 'YYYY-MM-DD' format to
-specify the initial date of retrieved data.}
+specify the initial date of retrieved data. Default value is current date
+minus 8 days.}
 
 \item{date_to}{(optional) The date string in 'YYYY-MM-DD' format to
 specify the final date of retrieved data. Must not exceed date_from + 30
-days.}
+days.  Default value is yesterday.}
 
-\item{domains}{(optional) A vector of domain names for witch the data
+\item{domains}{(optional) A vector of domain names for which the data
 should be retrieved. By default the data is retrieved for all domains
 that rank for at least two keywords that are added to the project.}
 
@@ -57,10 +58,10 @@ keywords in  search ads blocks; or 'avg_position_top',
 \item{order}{(optional) The sorting order. Must be one of string 'desc'
 (default) for descending sorting or 'asc' for ascending sorting.}
 
-\item{page}{(optional) Page number if there are many pages in response. The
+\item{page}{(optional) Response page number if there are many pages in response. The
 default value is 1.}
 
-\item{size}{(optional) Page size. Must be one of 20, 50, 100, 200, 500.The
+\item{size}{(optional) Response page size. Must be one of 20, 50, 100, 200, 500.The
 default value is 100.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
@@ -74,13 +75,18 @@ Returns traffic and keywords distributions, average positions of
 This method method returns the competing in top20 search results domains
   that rank for at least two keywords that are added the project.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/622-list-of-domains-from-top-20-by-project-keywords-gettopcompetitorsdomainshistory/}{here}.
+}
+
 \section{API rows consumption}{
  0
 }
 
 \examples{
 \dontrun{
-api_token  <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 project_id <- 12345
 region_id  <- sst_rt_competitors(
   api_token  = api_token,

@@ -27,7 +27,7 @@ of API rows left.
 
 \examples{
 \dontrun{
-api_token <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_stats(api_token)$summary_info$left_lines
 }
 }

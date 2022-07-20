@@ -1,3 +1,12 @@
+# serpstatr 0.2.0
+
+Add backlinks API functions:
+
+* sst_bl_domain_summary() - backlinks summary stats for the domain
+* sst_bl_referring_domains() - referring domains stats for the domain
+
+Set default values for dates, keywords, and URLs in rank tracker functions.
+
 # serpstatr 0.1.0
 
 Add rank tracker API functions:

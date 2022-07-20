@@ -41,25 +41,25 @@ details.}
 \item{filters}{(optional) A list of filtering options. See Filtering for more
 details.}
 
-\item{page}{(optional) Page number if there are many pages in response.}
+\item{page}{(optional) Response page number if there are many pages in response.}
 
-\item{size}{(optional) Page size.
-Optional parameters for filtering, sorting
-and walking through the pages of the response are described
-\href{https://serpstat.com/api/61-filtering-and-sorting-results/}{here}.}
+\item{size}{(optional) Response page size.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
 }
 \value{
-Returns
-  \href{https://serpstat.com/api/18-domain-organic-keywords-domainkeywords/}{a
-  number metrics} for each keyword.
+Returns a number of metrics for each keyword.
 }
 \description{
 Returns up to 60 000 organic keywords from selected region for the domain
 with a number of metrics for each keyword.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/584-top-search-engine-keywords-by-v4-domain-serpstatdomainproceduregetdomainkeywords/}{here}.
+}
+
 \section{API rows consumption}{
  1 per keyword in response.
 }
@@ -78,17 +78,15 @@ with a number of metrics for each keyword.
 
   To filter the results you can use \code{filters} argument. It must be a
   list of named elements. The name of the element must match one of the
-  filtering parameters described
-  \href{https://serpstat.com/api/61-filtering-and-sorting-results/}{here}.
-  You can find all the acceptable values for each parameter there too. For
-  example, \code{filters = list(queries_from = 0, queries_to = 10)} would
-  narrow the results to include only the keywords that have a search volume
+  filtering parameters. See API docs for more details. For example,
+  \code{filters = list(queries_from = 0, queries_to = 10)} would narrow
+  the results to include only the keywords that have a search volume
   between 0 and 10.
 }
 
 \examples{
 \dontrun{
-api_token <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_domain_keywords(
   api_token     = api_token,
   domain        = 'serpstat.com',

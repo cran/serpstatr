@@ -27,6 +27,11 @@ In Serpstat you are able to track ranking of your website in multiple
 regions. This method returns all the regions in your Serpstat project.
 You will need the results of this method to get rankings in selected region.
 }
+\section{API docs}{
+
+ Check all the values for request and response fields \href{https://serpstat.com/api/620-list-of-project-regions-with-their-statuses-getprojectregions/}{here}.
+}
+
 \section{API rows consumption}{
  0
 }

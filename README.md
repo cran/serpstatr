@@ -22,7 +22,7 @@ in all package functions.
 
 Check if you have enough limits to make API calls
 
-    api_token <- 'your_api_token'
+    api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
     sst_sa_stats(api_token)$summary_info$left_lines
 
 Get database ID to make requests:
@@ -74,6 +74,22 @@ Call functions to get the data on your rankings:
       size          = 100,
       return_method = 'list'
       )$data$keywords
+      
+3. Backlinks
+
+Call functions to get the data on the backlinks:
+
+-   sst_bl_domain_summary() - backlinks summary stats for the domain
+-   sst_bl_referring_domains() - referring domains stats for the domain
+
+<!-- -->
+
+    sst_bl_domain_summary(
+      api_token     = api_token,
+      domain        = 'serpstat.com',
+      search_type   = 'domain',
+      return_method = 'list'
+      )$data
 
 Installation
 ------------
