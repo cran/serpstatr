@@ -62,8 +62,7 @@ Returns the search engine results for specific dates and region
   including positions and URLs.
 }
 \description{
-This method returns top 100 search results in Google and top 50
-search results in Yandex by region and project keywords.
+This method returns top 100 search results in Google.
 }
 \section{API docs}{
 

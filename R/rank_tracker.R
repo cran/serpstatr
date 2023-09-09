@@ -44,8 +44,7 @@ sst_rt_project_regions <- function(
 
 #' Get search results history in search region by keywords
 #'
-#' This method returns top 100 search results in Google and top 50
-#' search results in Yandex by region and project keywords.
+#' This method returns top 100 search results in Google.
 #'
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/642-serp-history-by-the-project-keywords-getkeywordsserpresultshistory/}{here}.

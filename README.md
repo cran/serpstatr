@@ -4,7 +4,7 @@ serpstatr
 The aim of serpstatr is to provide a wrapper for the latest version of
 [Serpstat API](https://serpstat.com/api/). The main purpose of this API
 is automation of common SEO and PPC tasks like keywords research and
-competitors analysis in Google and Yandex.
+competitors analysis in Google.
 
 All package functions names have the same structure:
 

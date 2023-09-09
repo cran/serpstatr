@@ -3,6 +3,7 @@
 \docType{package}
 \name{serpstatr}
 \alias{serpstatr}
+\alias{serpstatr-package}
 \title{serpstatr:  Serpstat API wrapper for R.}
 \description{
 The serpstatr package currently covers only main search analytics API
@@ -34,3 +35,15 @@ The names of these functions start with \code{sst_sa_}
 }
 }
 
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://serpstat.com/api/}
+}
+
+}
+\author{
+\strong{Maintainer}: Alex Danilin \email{alexnikdanilin@gmail.com}
+
+}
+\keyword{internal}

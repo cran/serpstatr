@@ -1,3 +1,8 @@
+# serpstatr 0.2.1
+
+Change dependencies versions and fixed package documentation for complience
+with roxygen2 breaking changes.
+
 # serpstatr 0.2.0
 
 Add backlinks API functions:

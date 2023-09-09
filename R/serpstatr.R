@@ -26,4 +26,5 @@
 #'
 #' @docType package
 #' @name serpstatr
-NULL
+#' @keywords internal 
+"_PACKAGE"
