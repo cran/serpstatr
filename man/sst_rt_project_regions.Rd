@@ -32,13 +32,13 @@ You will need the results of this method to get rankings in selected region.
  Check all the values for request and response fields \href{https://serpstat.com/api/620-list-of-project-regions-with-their-statuses-getprojectregions/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  0
 }
 
 \examples{
 \dontrun{
-api_token  <- 'api_token'
+api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 project_id <- 12345
 sst_rt_project_regions(api_token = api_token, project_id = project_id)
 }

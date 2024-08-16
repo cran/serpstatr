@@ -34,7 +34,7 @@ Returns the overview of the backlinks profile for the domain.
  Check all the values for request and response fields \href{https://serpstat.com/api/887-summary-report-getsummaryv2-new-version/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  1 per request.
 }
 

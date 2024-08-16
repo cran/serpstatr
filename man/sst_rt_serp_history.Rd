@@ -69,7 +69,7 @@ This method returns top 100 search results in Google.
  Check all the values for request and response fields \href{https://serpstat.com/api/642-serp-history-by-the-project-keywords-getkeywordsserpresultshistory/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  0
 }
 

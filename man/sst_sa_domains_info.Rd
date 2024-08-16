@@ -39,7 +39,7 @@ PPC, online visibility and other metrics.
  Check all the values for request and response fields \href{https://serpstat.com/api/412-summarnij-otchet-po-domenu-v4-serpstatdomainproceduregetdomainsinfo/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  1 per domain in request.
 }
 

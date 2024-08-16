@@ -1,3 +1,24 @@
+# serpstatr 0.3.0
+
+Add search analytics API functions:
+
+* sst_sa_domain_history() - domain historical metrics
+* sst_sa_domain_top_pages() - domain top pages
+* sst_sa_domain_organic_competitors() - domain organic competitors
+
+Add audit API functions:
+
+* sst_au_start() - start website audit
+* sst_au_get_summary() - get website audit summary
+
+Add project management API functions:
+
+* sst_pm_create_project() - create a new project
+* sst_pm_delete_project() - delete an existing project
+* sst_pm_list_projects() - list all projects available for the user
+
+Made minor documentation changes.
+
 # serpstatr 0.2.1
 
 Change dependencies versions and fixed package documentation for complience
@@ -22,12 +43,10 @@ Add rank tracker API functions:
     selected search region
 * sst_rt_competitors() - data on competitors in search results
 
-
 # serpstatr 0.0.2
 
 * Remove all tests dependent on external API.
 * Move API error handling from tests to main utility function sst_call_api_method.
-
 
 # serpstatr 0.0.1
 

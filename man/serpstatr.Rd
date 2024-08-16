@@ -2,8 +2,8 @@
 % Please edit documentation in R/serpstatr.R
 \docType{package}
 \name{serpstatr}
-\alias{serpstatr}
 \alias{serpstatr-package}
+\alias{serpstatr}
 \title{serpstatr:  Serpstat API wrapper for R.}
 \description{
 The serpstatr package currently covers only main search analytics API

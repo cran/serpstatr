@@ -75,7 +75,7 @@ This method method returns the rankings for specified domain is selected
  Check all the values for request and response fields \href{https://serpstat.com/api/632-poluchenie-spiska-stranitc-i-ih-pozitcij-po-domenu-geturlsserpresultshistory/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  0
 }
 

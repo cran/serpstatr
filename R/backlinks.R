@@ -5,7 +5,7 @@
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/887-summary-report-getsummaryv2-new-version/}{here}.
 #'
-#' @section API rows consumption: 1 per request.
+#' @section API credits consumption: 1 per request.
 #'
 #' @param api_token (required) Serpstat API token from
 #'   \href{https://serpstat.com/users/profile/}{your profile}.
@@ -53,7 +53,7 @@ sst_bl_domain_summary <- function(
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/312-reffering-domains/}{here}.
 #'
-#' @section API rows consumption: 1 per each domain in response.
+#' @section API credits consumption: 1 per each domain in response.
 #'
 #' @section Sorting:
 #'   You can sort the response using \code{sort} argument. The sorting order is

@@ -21,7 +21,7 @@ API rows available for you is based on your
 \href{https://serpstat.com/pay/}{plan}. Use this method to control the amount
 of API rows left.
 }
-\section{API rows consumption}{
+\section{API credits consumption}{
  0
 }
 

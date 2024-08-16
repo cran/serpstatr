@@ -28,7 +28,7 @@ country names.
  Check all the values for request and response fields \href{https://serpstat.com/api/406-list-of-available-v4-databases-serpstatdatabaseproceduregetdatabaseinfo/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  0
 }
 

@@ -60,7 +60,7 @@ with a number of metrics for each keyword.
  Check all the values for request and response fields \href{https://serpstat.com/api/584-top-search-engine-keywords-by-v4-domain-serpstatdomainproceduregetdomainkeywords/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  1 per keyword in response.
 }
 

@@ -39,7 +39,7 @@ competition level.
  Check all the values for request and response fields \href{https://serpstat.com/api/600-keyword-info-v4-serpstatkeywordproceduregetkeywordsinfo/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  1 per keyword in request.
 }
 

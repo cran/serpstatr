@@ -29,7 +29,7 @@ organic results, paid results and different types of SERP features.
  Check all the values for request and response fields \href{https://serpstat.com/api/598-keyword-top-v4-serpstatkeywordproceduregetkeywordtop/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  1 per URL in response.
 }
 

@@ -54,7 +54,7 @@ domain.
  Check all the values for request and response fields \href{https://serpstat.com/api/312-reffering-domains/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  1 per each domain in response.
 }
 

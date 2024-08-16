@@ -8,7 +8,7 @@
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/406-list-of-available-v4-databases-serpstatdatabaseproceduregetdatabaseinfo/}{here}.
 #'
-#' @section API rows consumption: 0
+#' @section API credits consumption: 0
 #'
 #' @param api_token (required) Serpstat API token from
 #'   \href{https://serpstat.com/users/profile/}{your profile}.
@@ -37,7 +37,7 @@ sst_sa_database_info <- function(api_token, return_method = 'list'){
 #' \href{https://serpstat.com/pay/}{plan}. Use this method to control the amount
 #' of API rows left.
 #'
-#' @section API rows consumption: 0
+#' @section API credits consumption: 0
 #'
 #' @inheritParams sst_sa_database_info
 #' @return Returns a number of API rows left. Also returns some additional
@@ -65,7 +65,7 @@ sst_sa_stats <- function(api_token){
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/412-summarnij-otchet-po-domenu-v4-serpstatdomainproceduregetdomainsinfo/}{here}.
 #'
-#' @section API rows consumption: 1 per domain in request.
+#' @section API credits consumption: 1 per domain in request.
 #'
 #' @param domains (required) A vector of domain names to analyze.
 #' @param se (required) Search engine alias (db_name) returned by
@@ -114,7 +114,7 @@ sst_sa_domains_info <- function(
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/584-top-search-engine-keywords-by-v4-domain-serpstatdomainproceduregetdomainkeywords/}{here}.
 #'
-#' @section API rows consumption: 1 per keyword in response.
+#' @section API credits consumption: 1 per keyword in response.
 #'
 #' @section Sorting:
 #'   You can sort the response using \code{sort} argument. It must be a list
@@ -199,6 +199,195 @@ sst_sa_domain_keywords <- function(
   sst_return_check(response_content, return_method)
 }
 
+#' Domain history
+#'
+#' Returns historical metrics for the domain with about two weeks between measurements.
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/420-istoriya-po-domenu-v4-serpstatdomainproceduregetdomainshistory/}{here}.
+#'
+#' @section API credits consumption: 1 per date in the response.
+#'
+#' @param domain (required) Domain to get data for.
+#' @param se (required) Search engine alias (db_name) returned by
+#'   \code{\link{sst_sa_database_info}}.
+#' @param sort (optional) A field to sort the response. See Sorting for more
+#'   details.
+#' @param filters (optional) A list of filtering options. See Filtering for more
+#'   details.
+#' @param page (optional) Response page number if there are many pages in response.
+#' @param size (optional) Response page size.
+#' @param during_all_time (optional) TRUE (default) for all the history,
+#'   FALSE for year-to-date data.
+#' @inheritParams sst_sa_database_info
+#' @inheritSection sst_sa_domain_keywords Sorting
+#' @inheritSection sst_sa_domain_keywords Filtering
+#' @return Returns a number of metrics for each date for the domain.
+#' @examples
+#' \dontrun{
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
+#' sst_sa_domain_history(
+#'   api_token     = api_token,
+#'   domain        = 'serpstat.com',
+#'   se            = 'g_us',
+#'   sort          = list(date = 'desc'),
+#'   filters       = list(traff_from = 20000),
+#'   page          = 2,
+#'   size          = 10,
+#'   return_method = 'df'
+#' )$data
+#' }
+#' @export
+sst_sa_domain_history <- function(
+    api_token,
+    domain,
+    se,
+    sort            = NULL,
+    filters         = NULL,
+    page            = 1,
+    size            = 100,
+    during_all_time = TRUE,
+    return_method   = 'list'
+    ){
+  api_params <- list(
+    domain          = domain,
+    se              = se,
+    sort            = sort,
+    filters         = filters,
+    page            = page,
+    size            = size,
+    during_all_time = during_all_time
+    )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'SerpstatDomainProcedure.getDomainsHistory',
+    api_params = api_params
+    )
+  sst_return_check(response_content, return_method)
+}
+
+#' Domain top pages
+#'
+#' Returns the number of domain pages with the biggest potential traffic,
+#'   number of keywords, and Facebook shares.
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/588-domain-top-urls-v4-serpstatdomainproceduregettopurls/}{here}.
+#'
+#' @section API credits consumption: 1 per returned page.
+#'
+#' @param domain (required) Domain to get data for.
+#' @param se (required) Search engine alias (db_name) returned by
+#'   \code{\link{sst_sa_database_info}}.
+#' @param sort (optional) A field to sort the response. See Sorting for more
+#'   details.
+#' @param filters (optional) A list of filtering options. See Filtering for more
+#'   details.
+#' @param page (optional) Response page number if there are many pages in response.
+#' @param size (optional) Response page size.
+#' @inheritParams sst_sa_database_info
+#' @inheritSection sst_sa_domain_keywords Sorting
+#' @inheritSection sst_sa_domain_keywords Filtering
+#' @return Returns domain top pages with their metrics.
+#' @examples
+#' \dontrun{
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
+#' sst_sa_domain_top_pages(
+#'   api_token     = api_token,
+#'   domain        = 'serpstat.com',
+#'   se            = 'g_us',
+#'   sort          = list(organic_keywords = 'desc'),
+#'   filters       = list(url_contain = 'blog'),
+#'   page          = 2,
+#'   size          = 50,
+#'   return_method = 'df'
+#' )$data
+#' }
+#' @export
+sst_sa_domain_top_pages <- function(
+    api_token,
+    domain,
+    se,
+    sort          = NULL,
+    filters       = NULL,
+    page          = 1,
+    size          = 100,
+    return_method = 'list'
+    ){
+  api_params <- list(
+    domain  = domain,
+    se      = se,
+    sort    = sort,
+    filters = filters,
+    page    = page,
+    size    = size
+    )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'SerpstatDomainProcedure.getTopUrls',
+    api_params = api_params
+    )
+  sst_return_check(response_content, return_method)
+}
+
+#' Domain competitors in organic search
+#'
+#' Returns organic competitors for the domain with their key metrics.
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://serpstat.com/api/588-domain-top-urls-v4-serpstatdomainproceduregettopurls/}{here}.
+#'
+#' @section API credits consumption: 1 per returned page.
+#'
+#' @param domain (required) Domain to get data for.
+#' @param se (required) Search engine alias (db_name) returned by
+#'   \code{\link{sst_sa_database_info}}.
+#' @param sort (optional) A field to sort the response. See Sorting for more
+#'   details.
+#' @param page (optional) Response page number if there are many pages in response.
+#' @param size (optional) Response page size.
+#' @inheritParams sst_sa_database_info
+#' @inheritSection sst_sa_domain_keywords Sorting
+#' @inheritSection sst_sa_domain_keywords Filtering
+#' @return Returns a number of metrics for each organic competitor.
+#' @examples
+#' \dontrun{
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
+#' sst_sa_domain_organic_competitors(
+#'   api_token     = api_token,
+#'   domain        = 'serpstat.com',
+#'   se            = 'g_us',
+#'   sort          = list(relevance = 'desc'),
+#'   page          = 2,
+#'   size          = 20,
+#'   return_method = 'df'
+#' )$data
+#' }
+#' @export
+sst_sa_domain_organic_competitors <- function(
+    api_token,
+    domain,
+    se,
+    sort          = NULL,
+    page          = 1,
+    size          = 100,
+    return_method = 'list'
+    ){
+  api_params <- list(
+    domain = domain,
+    se     = se,
+    sort   = sort,
+    page   = page,
+    size   = size
+    )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'SerpstatDomainProcedure.getOrganicCompetitorsPage',
+    api_params = api_params
+    )
+  sst_return_check(response_content, return_method)
+}
+
 #' Keywords summary
 #'
 #' Returns a number of metrics for each keyword like search volume, CPC and
@@ -207,7 +396,7 @@ sst_sa_domain_keywords <- function(
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/600-keyword-info-v4-serpstatkeywordproceduregetkeywordsinfo/}{here}.
 #'
-#' @section API rows consumption: 1 per keyword in request.
+#' @section API credits consumption: 1 per keyword in request.
 #'
 #' @param keywords (required) A vector of keywords to analyze.
 #' @param se (required) Search engine alias (db_name) returned by
@@ -258,7 +447,7 @@ sst_sa_keywords_info <- function(
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/592-keywords-for-v4-words-serpstatkeywordproceduregetkeywords/}{here}.
 #'
-#' @section API rows consumption: 1 per keyword in response.
+#' @section API credits consumption: 1 per keyword in response.
 #'
 #' @param keyword (required) A keyword to search for.
 #' @param se (required) Search engine alias (db_name) returned by
@@ -326,7 +515,7 @@ sst_sa_keywords <- function(
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/598-keyword-top-v4-serpstatkeywordproceduregetkeywordtop/}{here}.
 #'
 #'
-#' @section API rows consumption: 1 per URL in response.
+#' @section API credits consumption: 1 per URL in response.
 #'
 #' @param keyword (required) A keyword to search for.
 #' @param se (required) Search engine alias (db_name) returned by

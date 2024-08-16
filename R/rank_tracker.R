@@ -7,7 +7,7 @@
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/620-list-of-project-regions-with-their-statuses-getprojectregions/}{here}.
 #'
-#' @section API rows consumption: 0
+#' @section API credits consumption: 0
 #'
 #' @param api_token (required) Serpstat API token from
 #'   \href{https://serpstat.com/users/profile/}{your profile}.
@@ -21,7 +21,7 @@
 #'   not) and other region attributes.
 #' @examples
 #' \dontrun{
-#' api_token  <- 'api_token'
+#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' project_id <- 12345
 #' sst_rt_project_regions(api_token = api_token, project_id = project_id)
 #' }
@@ -50,7 +50,7 @@ sst_rt_project_regions <- function(
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/642-serp-history-by-the-project-keywords-getkeywordsserpresultshistory/}{here}.
 #'
 #'
-#' @section API rows consumption: 0
+#' @section API credits consumption: 0
 #'
 #' @param region_id (required) The ID of a region returned by
 #'   \code{\link{sst_rt_project_regions}}.
@@ -138,7 +138,7 @@ sst_rt_serp_history <- function(
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/632-poluchenie-spiska-stranitc-i-ih-pozitcij-po-domenu-geturlsserpresultshistory/}{here}.
 #'
 #'
-#' @section API rows consumption: 0
+#' @section API credits consumption: 0
 #'
 #' @param url (optional) The domain name (e.g. domain.com) or web page address
 #'   (e.g. https://domain.com/page) to get the data for. By default the
@@ -212,7 +212,7 @@ sst_rt_positions_history <- function(
 #' @section API docs:
 #'  Check all the values for request and response fields \href{https://serpstat.com/api/622-list-of-domains-from-top-20-by-project-keywords-gettopcompetitorsdomainshistory/}{here}.
 #'
-#' @section API rows consumption: 0
+#' @section API credits consumption: 0
 #'
 #' @param region_id (required) The ID of a region returned by
 #'   \code{\link{sst_rt_project_regions}}.

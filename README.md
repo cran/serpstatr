@@ -33,6 +33,9 @@ Call functions to get keywords data:
 
 -   sst\_sa\_domains\_info() - domain summary stats
 -   sst\_sa\_domain\_keywords() - domain keywords with stats
+-   sst\_sa\_domain\_history() - domain historical metrics
+-   sst\_sa\_domain\_top\_pages() - domain top pages
+-   sst\_sa\_domain\_organic\_competitors() - domain organic competitors
 -   sst\_sa\_keywords\_info() - keywords summary stats
 -   sst\_sa\_keywords() - search Serpstat database for keywords with
     stats
@@ -48,7 +51,23 @@ Call functions to get keywords data:
       return_method = 'df'
     )$data
     
-3. Rank tracker
+3. Backlinks
+
+Call functions to get the data on the backlinks:
+
+-   sst_bl_domain_summary() - backlinks summary stats for the domain
+-   sst_bl_referring_domains() - referring domains stats for the domain
+
+<!-- -->
+
+    sst_bl_domain_summary(
+      api_token     = api_token,
+      domain        = 'serpstat.com',
+      search_type   = 'domain',
+      return_method = 'list'
+      )$data
+      
+4. Rank tracker
 
 Call functions to get the data on your rankings:
 
@@ -74,22 +93,36 @@ Call functions to get the data on your rankings:
       size          = 100,
       return_method = 'list'
       )$data$keywords
-      
-3. Backlinks
 
-Call functions to get the data on the backlinks:
+4. Audit
 
--   sst_bl_domain_summary() - backlinks summary stats for the domain
--   sst_bl_referring_domains() - referring domains stats for the domain
+Call functions to audit your website for technical issues:
+
+-   sst_au_start() - start website audit
+-   sst_au_get_summary() - get website audit summary
 
 <!-- -->
 
-    sst_bl_domain_summary(
+    sst_au_start(
       api_token     = api_token,
-      domain        = 'serpstat.com',
-      search_type   = 'domain',
-      return_method = 'list'
-      )$data
+      project_id    = project_id
+      )$data$reportId
+      
+5. Project management
+
+Call functions to manage your projects:
+
+-   sst_pm_create_project() - create a new project
+-   sst_pm_delete_project() - delete an existing project
+-   sst_pm_list_projects() - list all projects available for the user
+
+<!-- -->
+
+    sst_pm_create_project(
+      api_token = api_token,
+      domain    = 'serpstat.com',
+      name      = 'Serpstat'
+      )$data$project_id
 
 Installation
 ------------

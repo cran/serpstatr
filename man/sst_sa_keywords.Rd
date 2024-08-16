@@ -54,7 +54,7 @@ level.
  Check all the values for request and response fields \href{https://serpstat.com/api/592-keywords-for-v4-words-serpstatkeywordproceduregetkeywords/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  1 per keyword in response.
 }
 

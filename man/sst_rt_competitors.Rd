@@ -80,7 +80,7 @@ This method method returns the competing in top20 search results domains
  Check all the values for request and response fields \href{https://serpstat.com/api/622-list-of-domains-from-top-20-by-project-keywords-gettopcompetitorsdomainshistory/}{here}.
 }
 
-\section{API rows consumption}{
+\section{API credits consumption}{
  0
 }
 
