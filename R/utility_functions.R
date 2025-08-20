@@ -1,28 +1,16 @@
 #' Make a request to Serpstat API endpoint
 #'
 #' @param api_token Serpstat API token from the
-#'   \href{https://serpstat.com/users/profile/}{profile page}.
+#'   \href{https://serpstat.com/users/profile/}{profile page}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param api_method Internal name of API method.
 #' @param api_params A list of API parameters used by api_method. More
 #'   information about parameters in the
-#'   \href{https://serpstat.com/api/}{official docs}.
+#'   \href{https://api-docs.serpstat.com/docs/serpstat-public-api/jenasqbwtxdlr-introduction-to-serpstat-api}{official docs}.
 #' @return The list with a response data.
-#' @examples
-#' \donttest{
-#' api_params <- list(
-#'   query = 'serpstat.com',
-#'   page  = 1,
-#'   size  = 5
-#'   )
-#' tryCatch({
-#'   serpstatr:::sst_call_api_method(
-#'     api_token  = Sys.getenv('SERPSTAT_API_TOKEN'),
-#'     api_method = 'SerpstatLimitsProcedure.getStats',
-#'     api_params = api_params
-#'     )
-#' })
-#' }
 sst_call_api_method <- function(api_token, api_method, api_params = NULL) {
+  if (is.null(api_token) || api_token == "") {
+    stop("API token is not set. Please set your Serpstat API token. You can find it here: https://serpstat.com/users/profile/")
+  }
   tryCatch({
     api_response <- httr::POST(
       url    = 'http://api.serpstat.com/v4',

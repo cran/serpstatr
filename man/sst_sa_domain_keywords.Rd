@@ -5,7 +5,6 @@
 \title{Domain organic keywords}
 \usage{
 sst_sa_domain_keywords(
-  api_token,
   domain,
   se,
   url = NULL,
@@ -15,13 +14,11 @@ sst_sa_domain_keywords(
   filters = NULL,
   page = 1,
   size = 100,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{domain}{(required) Domain to get data for.}
 
 \item{se}{(required) Search engine alias (db_name) returned by
@@ -47,6 +44,9 @@ details.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns a number of metrics for each keyword.
@@ -57,7 +57,7 @@ with a number of metrics for each keyword.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/584-top-search-engine-keywords-by-v4-domain-serpstatdomainproceduregetdomainkeywords/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/j5jbjt0rk7oei-get-domain-keywords}{here}.
 }
 
 \section{API credits consumption}{
@@ -86,9 +86,7 @@ with a number of metrics for each keyword.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_domain_keywords(
-  api_token     = api_token,
   domain        = 'serpstat.com',
   se            = 'g_us',
   sort          = list(keyword_length = 'desc'),

@@ -4,18 +4,26 @@
 \alias{sst_sa_keyword_top}
 \title{Top for a keyword}
 \usage{
-sst_sa_keyword_top(api_token, keyword, se, top_size = 100)
+sst_sa_keyword_top(
+  keyword,
+  se,
+  sort = NULL,
+  size = 100,
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
+)
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{keyword}{(required) A keyword to search for.}
 
 \item{se}{(required) Search engine alias (db_name) returned by
 \code{\link{sst_sa_database_info}}.}
 
-\item{top_size}{(optional) Set the number of URLs to get in response.}
+\item{sort}{(optional) A field to sort the response. See API docs for more details.}
+
+\item{size}{(optional) Response page size. Should be => 10 and <=100. Default is 100.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns a list with the data about search engine results page for the keyword.
@@ -26,7 +34,7 @@ organic results, paid results and different types of SERP features.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/598-keyword-top-v4-serpstatkeywordproceduregetkeywordtop/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/env4osjb1ev9c-get-keyword-top}{here}.
 }
 
 \section{API credits consumption}{
@@ -35,12 +43,10 @@ organic results, paid results and different types of SERP features.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_keyword_top(
-  api_token = api_token,
   keyword   = 'serpstat',
   se        = 'g_us',
-  top_size  = 10
+  size  = 10
 )
 }
 }

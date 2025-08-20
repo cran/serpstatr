@@ -5,17 +5,14 @@
 \title{Keywords summary}
 \usage{
 sst_sa_keywords_info(
-  api_token,
   keywords,
   se,
   sort = NULL,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{keywords}{(required) A vector of keywords to analyze.}
 
 \item{se}{(required) Search engine alias (db_name) returned by
@@ -26,6 +23,9 @@ details.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns a number of metrics for each keyword.
@@ -36,7 +36,7 @@ competition level.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/600-keyword-info-v4-serpstatkeywordproceduregetkeywordsinfo/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/2brcbdgmr6rcx-get-keywords-info}{here}.
 }
 
 \section{API credits consumption}{
@@ -55,9 +55,7 @@ competition level.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_keywords_info(
-  api_token     = api_token,
   keywords      = c('seo', 'ppc', 'serpstat'),
   se            = 'g_us',
   sort          = list(cost = 'asc'),

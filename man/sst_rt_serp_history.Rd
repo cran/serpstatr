@@ -5,23 +5,21 @@
 \title{Get search results history in search region by keywords}
 \usage{
 sst_rt_serp_history(
-  api_token,
   project_id,
   region_id,
   date_from = Sys.Date() - 8,
   date_to = Sys.Date() - 1,
   keywords = NULL,
+  tags = FALSE,
   sort = "keyword",
   order = "desc",
   page = 1,
   size = 100,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{project_id}{(required) The ID of your project in Serpstat. You can
 find this ID in the URL of any rank tracker report. As an example, in
 https://serpstat.com/rank-tracker/keywords/12345/positions?get_params the
@@ -42,6 +40,8 @@ days. Default is yesterday.}
 retrieved. Maximum 1000 keywords per request. By default all the data for
 all keywords in the project is returned.}
 
+\item{tags}{(optional) TRUE if keyword tags should be retrieved. Default is FALSE.}
+
 \item{sort}{(optional) Must be one of 'keyword' (default) to sort the
 results alphabetically or 'date' to sort the results by date.}
 
@@ -56,6 +56,9 @@ default value is 100.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns the search engine results for specific dates and region
@@ -66,7 +69,7 @@ This method returns top 100 search results in Google.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/642-serp-history-by-the-project-keywords-getkeywordsserpresultshistory/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/3x0bjg0i2r94w-get-keywords-serp-results-history}{here}.
 }
 
 \section{API credits consumption}{
@@ -75,10 +78,8 @@ This method returns top 100 search results in Google.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 project_id <- 12345
 region_id  <- sst_rt_project_regions(
-  api_token  = api_token,
   project_id = project_id
   )$data$regions[[1]]$id
 sst_rt_serp_history(

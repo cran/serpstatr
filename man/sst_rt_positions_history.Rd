@@ -5,24 +5,22 @@
 \title{Get ranking history for the domain or URL in selected search region}
 \usage{
 sst_rt_positions_history(
-  api_token,
   project_id,
   region_id,
   date_from = Sys.Date() - 8,
   date_to = Sys.Date() - 1,
   keywords = NULL,
   url = NULL,
+  tags = FALSE,
   sort = "keyword",
   order = "desc",
   page = 1,
   size = 100,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{project_id}{(required) The ID of your project in Serpstat. You can
 find this ID in the URL of any rank tracker report. As an example, in
 https://serpstat.com/rank-tracker/keywords/12345/positions?get_params the
@@ -47,6 +45,8 @@ all keywords in the project is returned.}
 (e.g. https://domain.com/page) to get the data for. By default the
 results are returned for the projects' domain name.}
 
+\item{tags}{(optional) TRUE if keyword tags should be retrieved. Default is FALSE.}
+
 \item{sort}{(optional) Must be one of 'keyword' (default) to sort the
 results alphabetically or 'date' to sort the results by date.}
 
@@ -61,6 +61,9 @@ default value is 100.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns positions of selected domain in search engine results in
@@ -72,7 +75,7 @@ This method method returns the rankings for specified domain is selected
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/632-poluchenie-spiska-stranitc-i-ih-pozitcij-po-domenu-geturlsserpresultshistory/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/6abhpt8t9magu-get-urls-serp-results-history}{here}.
 }
 
 \section{API credits consumption}{
@@ -81,10 +84,8 @@ This method method returns the rankings for specified domain is selected
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 project_id <- 12345
 region_id  <- sst_rt_project_regions(
-  api_token  = api_token,
   project_id = project_id
   )$data$regions[[1]]$id
 sst_rt_positions_history(

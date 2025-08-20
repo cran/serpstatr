@@ -4,12 +4,13 @@
 \alias{sst_rt_project_regions}
 \title{Get all regions for the project}
 \usage{
-sst_rt_project_regions(api_token, project_id, return_method = "list")
+sst_rt_project_regions(
+  project_id,
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
+)
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{project_id}{(required) The ID of your project in Serpstat. You can
 find this ID in the URL of any rank tracker report. As an example, in
 https://serpstat.com/rank-tracker/keywords/12345/positions?get_params the
@@ -17,6 +18,9 @@ ID would be 12345.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns the regions of the project with their ID, state (active or
@@ -29,7 +33,7 @@ You will need the results of this method to get rankings in selected region.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/620-list-of-project-regions-with-their-statuses-getprojectregions/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/frxvm29tz3s6e-get-project-regions}{here}.
 }
 
 \section{API credits consumption}{
@@ -38,8 +42,6 @@ You will need the results of this method to get rankings in selected region.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
-project_id <- 12345
-sst_rt_project_regions(api_token = api_token, project_id = project_id)
+sst_rt_project_regions(project_id = 12345)
 }
 }

@@ -5,16 +5,13 @@
 \title{Backlinks summary}
 \usage{
 sst_bl_domain_summary(
-  api_token,
   domain,
   search_type = "domain",
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{domain}{(required) A domain name to analyze.}
 
 \item{search_type}{(optional) Default value is 'domain' for
@@ -22,6 +19,9 @@ domain only (site.com). See API docs for more details.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns aggregated backlinks data for the domain.
@@ -31,7 +31,7 @@ Returns the overview of the backlinks profile for the domain.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/887-summary-report-getsummaryv2-new-version/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/ylg7q8n96yjci-get-summary-v2}{here}.
 }
 
 \section{API credits consumption}{
@@ -40,9 +40,7 @@ Returns the overview of the backlinks profile for the domain.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_bl_domain_summary(
-  api_token     = api_token,
   domain        = 'serpstat.com',
   search_type   = 'domain',
   return_method = 'list'

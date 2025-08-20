@@ -4,18 +4,23 @@
 \alias{sst_pm_list_projects}
 \title{List existing projects}
 \usage{
-sst_pm_list_projects(api_token, page = 1, size = 100, return_method = "list")
+sst_pm_list_projects(
+  page = 1,
+  size = 100,
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
+)
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{page}{(optional) Response page number if there are many pages in response.}
 
 \item{size}{(optional) Response page size.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns basic information on all the projects.
@@ -26,7 +31,7 @@ information.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/get-list-of-projects/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/3ezca25cnkqw5-get-projects}{here}.
 }
 
 \section{API credits consumption}{
@@ -35,9 +40,7 @@ information.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_pm_list_projects(
-  api_token  = api_token,
   page       = 2,
   size       = 10
   )

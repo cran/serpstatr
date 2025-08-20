@@ -3,12 +3,12 @@
 #' Creates a new project in Serpstat.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/project-creation/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/s04fhpr4grvek-create-project}{here}.
 #'
 #' @section API credits consumption: 1 project credit.
 #'
 #' @param api_token (required) Serpstat API token from
-#'   \href{https://serpstat.com/users/profile/}{your profile}.
+#'   \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param domain (required) Domain to get data for.
 #' @param name (required) The name of the project. Can be different from the
 #'   domain.
@@ -17,19 +17,17 @@
 #' @return Returns the project ID for the created project.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_pm_create_project(
-#'   api_token = api_token,
 #'   domain    = 'serpstat.com',
 #'   name      = 'Serpstat'
 #'   )$data$project_id
 #' }
 #' @export
 sst_pm_create_project <- function(
-    api_token,
     domain,
     name,
-    groups = NULL
+    groups    = NULL,
+    api_token = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
   api_params <- list(
     domain = domain,
@@ -49,24 +47,25 @@ sst_pm_create_project <- function(
 #' Deletes the existing project in Serpstat by project ID.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/project-deletion/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/z6pip7gt8wqo0-delete-project}{here}.
 #'
 #' @section API credits consumption: returns 1 project credit.
 #'
 #' @param api_token (required) Serpstat API token from
-#'   \href{https://serpstat.com/users/profile/}{your profile}.
+#'   \href{https://serpstat.com/users/profile/}{your profile}.Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param project_id (required) ID of the project in Serpstat.
 #' @return Returns the state of the deletion operation.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_pm_delete_project(
-#'   api_token  = api_token,
 #'   project_id = 12345
 #'   )
 #' }
 #' @export
-sst_pm_delete_project <- function(api_token, project_id = NULL){
+sst_pm_delete_project <- function(
+    api_token  = Sys.getenv('SERPSTAT_API_TOKEN'),
+    project_id = NULL
+    ){
   api_params       <- list(project_id = project_id)
   response_content <- sst_call_api_method(
     api_token  = api_token,
@@ -82,12 +81,12 @@ sst_pm_delete_project <- function(api_token, project_id = NULL){
 #' information.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/get-list-of-projects/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/3ezca25cnkqw5-get-projects}{here}.
 #'
 #' @section API credits consumption: 0.
 #'
 #' @param api_token (required) Serpstat API token from
-#'   \href{https://serpstat.com/users/profile/}{your profile}.
+#'   \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param page (optional) Response page number if there are many pages in response.
 #' @param size (optional) Response page size.
 #' @param return_method (optional) Accepted values are 'list' (default) to
@@ -95,19 +94,17 @@ sst_pm_delete_project <- function(api_token, project_id = NULL){
 #' @return Returns basic information on all the projects.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_pm_list_projects(
-#'   api_token  = api_token,
 #'   page       = 2,
 #'   size       = 10
 #'   )
 #' }
 #' @export
 sst_pm_list_projects <- function(
-    api_token,
     page          = 1,
     size          = 100,
-    return_method = 'list'
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
   api_params       <- list(page = page, size = size)
   response_content <- sst_call_api_method(

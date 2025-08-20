@@ -4,11 +4,14 @@
 \alias{sst_au_get_summary}
 \title{Website audit summary}
 \usage{
-sst_au_get_summary(api_token, report_id = NULL)
+sst_au_get_summary(
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN"),
+  report_id = NULL
+)
 }
 \arguments{
 \item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 
 \item{report_id}{(required) ID of the audit report to get data from.}
 }
@@ -21,7 +24,7 @@ checked pages, issues by priority, domain optimization score.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/516-audit-basic-information-getbasicinfo/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/uup6axm96za8m-get-basic-info}{here}.
 }
 
 \section{API credits consumption}{
@@ -30,9 +33,7 @@ checked pages, issues by priority, domain optimization score.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_au_get_summary(
-  api_token = api_key,
   report_id = report_id
   )$data
 }

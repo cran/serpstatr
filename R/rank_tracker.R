@@ -5,12 +5,12 @@
 #' You will need the results of this method to get rankings in selected region.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/620-list-of-project-regions-with-their-statuses-getprojectregions/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/frxvm29tz3s6e-get-project-regions}{here}.
 #'
 #' @section API credits consumption: 0
 #'
 #' @param api_token (required) Serpstat API token from
-#'   \href{https://serpstat.com/users/profile/}{your profile}.
+#'   \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param project_id (required) The ID of your project in Serpstat. You can
 #'   find this ID in the URL of any rank tracker report. As an example, in
 #'   https://serpstat.com/rank-tracker/keywords/12345/positions?get_params the
@@ -21,15 +21,13 @@
 #'   not) and other region attributes.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
-#' project_id <- 12345
-#' sst_rt_project_regions(api_token = api_token, project_id = project_id)
+#' sst_rt_project_regions(project_id = 12345)
 #' }
 #' @export
 sst_rt_project_regions <- function(
-    api_token,
     project_id,
-    return_method = 'list'
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
   api_params <- list(
     projectId = as.integer(project_id)
@@ -47,7 +45,7 @@ sst_rt_project_regions <- function(
 #' This method returns top 100 search results in Google.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/642-serp-history-by-the-project-keywords-getkeywordsserpresultshistory/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/3x0bjg0i2r94w-get-keywords-serp-results-history}{here}.
 #'
 #'
 #' @section API credits consumption: 0
@@ -63,6 +61,7 @@ sst_rt_project_regions <- function(
 #' @param keywords (optional) A vector of keywords for witch the data should be
 #'   retrieved. Maximum 1000 keywords per request. By default all the data for
 #'   all keywords in the project is returned.
+#' @param tags (optional) TRUE if keyword tags should be retrieved. Default is FALSE.
 #' @param sort (optional) Must be one of 'keyword' (default) to sort the
 #'   results alphabetically or 'date' to sort the results by date.
 #' @param order (optional) The sorting order. Must be one of string 'desc'
@@ -76,10 +75,8 @@ sst_rt_project_regions <- function(
 #'   including positions and URLs.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' project_id <- 12345
 #' region_id  <- sst_rt_project_regions(
-#'   api_token  = api_token,
 #'   project_id = project_id
 #'   )$data$regions[[1]]$id
 #' sst_rt_serp_history(
@@ -98,17 +95,18 @@ sst_rt_project_regions <- function(
 #' }
 #' @export
 sst_rt_serp_history <- function(
-    api_token,
     project_id,
     region_id,
     date_from     = Sys.Date() - 8,
     date_to       = Sys.Date() - 1,
     keywords      = NULL,
+    tags          = FALSE,
     sort          = 'keyword',
     order         = 'desc',
     page          = 1,
     size          = 100,
-    return_method = 'list'
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
   api_params <- list(
     projectId       = as.integer(project_id),
@@ -116,6 +114,7 @@ sst_rt_serp_history <- function(
     dateFrom        = date_from,
     dateTo          = date_to,
     keywords        = as.list(keywords),
+    withTags        = tags,
     sort            = sort,
     order           = order,
     page            = page,
@@ -135,7 +134,7 @@ sst_rt_serp_history <- function(
 #'   search region.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/632-poluchenie-spiska-stranitc-i-ih-pozitcij-po-domenu-geturlsserpresultshistory/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/6abhpt8t9magu-get-urls-serp-results-history}{here}.
 #'
 #'
 #' @section API credits consumption: 0
@@ -148,10 +147,8 @@ sst_rt_serp_history <- function(
 #'   selected region with corresponding URLs for these positions.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' project_id <- 12345
 #' region_id  <- sst_rt_project_regions(
-#'   api_token  = api_token,
 #'   project_id = project_id
 #'   )$data$regions[[1]]$id
 #' sst_rt_positions_history(
@@ -171,18 +168,19 @@ sst_rt_serp_history <- function(
 #' }
 #' @export
 sst_rt_positions_history <- function(
-    api_token,
     project_id,
     region_id,
     date_from     = Sys.Date() - 8,
     date_to       = Sys.Date() - 1,
     keywords      = NULL,
     url           = NULL,
+    tags          = FALSE,
     sort          = 'keyword',
     order         = 'desc',
     page          = 1,
     size          = 100,
-    return_method = 'list'
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
   api_params <- list(
     projectId       = as.integer(project_id),
@@ -191,6 +189,7 @@ sst_rt_positions_history <- function(
     dateTo          = date_to,
     keywords        = as.list(keywords),
     domain          = paste0(url, ''),
+    withTags        = tags,
     sort            = sort,
     order           = order,
     page            = page,
@@ -210,7 +209,7 @@ sst_rt_positions_history <- function(
 #'   that rank for at least two keywords that are added the project.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/622-list-of-domains-from-top-20-by-project-keywords-gettopcompetitorsdomainshistory/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/wm6nv6iuemkrv-get-top-competitors-domains-history}{here}.
 #'
 #' @section API credits consumption: 0
 #'
@@ -246,10 +245,8 @@ sst_rt_positions_history <- function(
 #'   the domains by date.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' project_id <- 12345
 #' region_id  <- sst_rt_competitors(
-#'   api_token  = api_token,
 #'   project_id = project_id
 #'   )$data$regions[[1]]$id
 #' sst_rt_competitors(
@@ -269,7 +266,6 @@ sst_rt_positions_history <- function(
 #' }
 #' @export
 sst_rt_competitors <- function(
-    api_token,
     project_id,
     region_id,
     date_from     = Sys.Date() - 8,
@@ -280,7 +276,8 @@ sst_rt_competitors <- function(
     order         = 'desc',
     page          = 1,
     size          = 100,
-    return_method = 'list'
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
   api_params <- list(
     projectId       = as.integer(project_id),

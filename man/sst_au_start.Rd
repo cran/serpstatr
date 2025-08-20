@@ -4,11 +4,11 @@
 \alias{sst_au_start}
 \title{Start a website audit}
 \usage{
-sst_au_start(api_token, project_id = NULL)
+sst_au_start(api_token = Sys.getenv("SERPSTAT_API_TOKEN"), project_id = NULL)
 }
 \arguments{
 \item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 
 \item{project_id}{(required) ID of the project in Serpstat.}
 }
@@ -21,7 +21,7 @@ audit settings if no settings were changed.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/510-audit-start-auditsitestart/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/bxdwdayrka3kf-start}{here}.
 }
 
 \section{API credits consumption}{
@@ -30,9 +30,7 @@ audit settings if no settings were changed.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_au_start(
-  api_token  = api_token,
   project_id = 12345
   )$data$reportId
 }

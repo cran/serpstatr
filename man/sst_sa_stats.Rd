@@ -4,11 +4,11 @@
 \alias{sst_sa_stats}
 \title{Get the number of API rows left}
 \usage{
-sst_sa_stats(api_token)
+sst_sa_stats(api_token = Sys.getenv("SERPSTAT_API_TOKEN"))
 }
 \arguments{
 \item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns a number of API rows left. Also returns some additional
@@ -18,7 +18,7 @@ Returns a number of API rows left. Also returns some additional
 \description{
 With most API request you spend some amount of API rows. The total amount of
 API rows available for you is based on your
-\href{https://serpstat.com/pay/}{plan}. Use this method to control the amount
+\href{https://serpstat.com/page/pricing-plans/}{plan}. Use this method to control the amount
 of API rows left.
 }
 \section{API credits consumption}{
@@ -27,7 +27,6 @@ of API rows left.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
-sst_sa_stats(api_token)$summary_info$left_lines
+sst_sa_stats()$summary_info$left_lines
 }
 }

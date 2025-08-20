@@ -5,7 +5,6 @@
 \title{Referring domains}
 \usage{
 sst_bl_referring_domains(
-  api_token,
   domain,
   search_type = "domain",
   page = 1,
@@ -13,13 +12,11 @@ sst_bl_referring_domains(
   sort = "domain_rank",
   order = "desc",
   filter = NULL,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{domain}{(required) A domain name to analyze.}
 
 \item{search_type}{(required) Default value is 'domain' for domain data only
@@ -41,6 +38,9 @@ for more details.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns aggregated backlinks data for each referring domain.
@@ -51,7 +51,7 @@ domain.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/312-reffering-domains/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/uhy05n77e38uy-get-ref-domains}{here}.
 }
 
 \section{API credits consumption}{
@@ -66,9 +66,7 @@ domain.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_bl_referring_domains(
-  api_token        = api_token,
   domain           = 'serpstat.com',
   page             = 1,
   size             = 100,

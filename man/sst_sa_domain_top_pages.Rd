@@ -5,20 +5,17 @@
 \title{Domain top pages}
 \usage{
 sst_sa_domain_top_pages(
-  api_token,
   domain,
   se,
   sort = NULL,
   filters = NULL,
   page = 1,
   size = 100,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{domain}{(required) Domain to get data for.}
 
 \item{se}{(required) Search engine alias (db_name) returned by
@@ -36,6 +33,9 @@ details.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns domain top pages with their metrics.
@@ -46,7 +46,7 @@ Returns the number of domain pages with the biggest potential traffic,
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/588-domain-top-urls-v4-serpstatdomainproceduregettopurls/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/94ol4y7b9zje4-get-top-urls}{here}.
 }
 
 \section{API credits consumption}{
@@ -75,9 +75,7 @@ Returns the number of domain pages with the biggest potential traffic,
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_domain_top_pages(
-  api_token     = api_token,
   domain        = 'serpstat.com',
   se            = 'g_us',
   sort          = list(organic_keywords = 'desc'),

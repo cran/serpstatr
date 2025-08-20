@@ -5,7 +5,6 @@
 \title{Domain history}
 \usage{
 sst_sa_domain_history(
-  api_token,
   domain,
   se,
   sort = NULL,
@@ -13,13 +12,11 @@ sst_sa_domain_history(
   page = 1,
   size = 100,
   during_all_time = TRUE,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{domain}{(required) Domain to get data for.}
 
 \item{se}{(required) Search engine alias (db_name) returned by
@@ -40,6 +37,9 @@ FALSE for year-to-date data.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns a number of metrics for each date for the domain.
@@ -49,7 +49,7 @@ Returns historical metrics for the domain with about two weeks between measureme
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/420-istoriya-po-domenu-v4-serpstatdomainproceduregetdomainshistory/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/jtjb01xqgwv8p-get-domains-history}{here}.
 }
 
 \section{API credits consumption}{
@@ -78,9 +78,7 @@ Returns historical metrics for the domain with about two weeks between measureme
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_domain_history(
-  api_token     = api_token,
   domain        = 'serpstat.com',
   se            = 'g_us',
   sort          = list(date = 'desc'),

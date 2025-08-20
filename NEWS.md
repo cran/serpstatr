@@ -1,3 +1,12 @@
+# serpstatr 0.4.0
+
+* Added `sst_sa_domain_regions_count()` to get the number of keywords per regions for a domain.
+* Added `sst_sa_related_keywords()` to get a list of semantically related keywords for a given keyword.
+* Added a check in `sst_call_api_method()` to ensure the API token is set.
+* Set default value of API token to Sys.getenv('SERPSTAT_API_TOKEN').
+* Added the option to retrieve keyword tags to `sst_rt_serp_history()` and `sst_rt_positions_history()`.
+* Updated `sst_sa_keyword_top()` from deprecated API method.
+
 # serpstatr 0.3.0
 
 Add search analytics API functions:
@@ -21,7 +30,7 @@ Made minor documentation changes.
 
 # serpstatr 0.2.1
 
-Change dependencies versions and fixed package documentation for complience
+Change dependencies versions and fixed package documentation for compliance
 with roxygen2 breaking changes.
 
 # serpstatr 0.2.0

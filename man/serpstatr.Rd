@@ -38,7 +38,7 @@ The names of these functions start with \code{sst_sa_}
 \seealso{
 Useful links:
 \itemize{
-  \item \url{https://serpstat.com/api/}
+  \item \url{https://api-docs.serpstat.com/docs/serpstat-public-api/jenasqbwtxdlr-introduction-to-serpstat-api}
 }
 
 }

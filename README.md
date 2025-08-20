@@ -2,7 +2,7 @@ serpstatr
 =========
 
 The aim of serpstatr is to provide a wrapper for the latest version of
-[Serpstat API](https://serpstat.com/api/). The main purpose of this API
+[Serpstat API](https://api-docs.serpstat.com/docs/serpstat-public-api/jenasqbwtxdlr-introduction-to-serpstat-api). The main purpose of this API
 is automation of common SEO and PPC tasks like keywords research and
 competitors analysis in Google.
 
@@ -16,18 +16,18 @@ How to use
 ----------
 
 1. Get your [API key](https://serpstat.com/users/profile/). It is required
-in all package functions.
+in all package functions. Set it as a SERPSTAT_API_TOKEN system variable.
+All functions are using it by default.
 
 2. Search analytics
 
 Check if you have enough limits to make API calls
 
-    api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
-    sst_sa_stats(api_token)$summary_info$left_lines
+    sst_sa_stats()$summary_info$left_lines
 
 Get database ID to make requests:
 
-    sst_sa_database_info(api_token)$data
+    sst_sa_database_info()$data
 
 Call functions to get keywords data:
 
@@ -36,15 +36,16 @@ Call functions to get keywords data:
 -   sst\_sa\_domain\_history() - domain historical metrics
 -   sst\_sa\_domain\_top\_pages() - domain top pages
 -   sst\_sa\_domain\_organic\_competitors() - domain organic competitors
+-   sst\_sa\_domain\_regions\_count() - number of keywords per region for a domain
 -   sst\_sa\_keywords\_info() - keywords summary stats
 -   sst\_sa\_keywords() - search Serpstat database for keywords with
     stats
+-   sst\_sa\_related\_keywords() - semantically related keywords for a given keyword
 -   sst\_sa\_keyword\_top() - get list of URLs from SERP for a keyword
 
 <!-- -->
 
     sst_sa_keywords_info(
-      api_token     = api_token,
       keywords      = c('seo', 'ppc', 'serpstat'),
       se            = 'g_us',
       sort          = list(cost = 'asc'),
@@ -61,7 +62,6 @@ Call functions to get the data on the backlinks:
 <!-- -->
 
     sst_bl_domain_summary(
-      api_token     = api_token,
       domain        = 'serpstat.com',
       search_type   = 'domain',
       return_method = 'list'
@@ -80,7 +80,6 @@ Call functions to get the data on your rankings:
 <!-- -->
 
     sst_rt_positions_history(
-      api_token     = api_token,
       project_id    = project_id,
       region_id     = region_id,
       date_from     = '2020-12-01',
@@ -104,7 +103,6 @@ Call functions to audit your website for technical issues:
 <!-- -->
 
     sst_au_start(
-      api_token     = api_token,
       project_id    = project_id
       )$data$reportId
       
@@ -119,7 +117,6 @@ Call functions to manage your projects:
 <!-- -->
 
     sst_pm_create_project(
-      api_token = api_token,
       domain    = 'serpstat.com',
       name      = 'Serpstat'
       )$data$project_id

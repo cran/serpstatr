@@ -4,11 +4,14 @@
 \alias{sst_sa_database_info}
 \title{List all Serpstat databases}
 \usage{
-sst_sa_database_info(api_token, return_method = "list")
+sst_sa_database_info(
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN"),
+  return_method = "list"
+)
 }
 \arguments{
 \item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
@@ -25,7 +28,7 @@ country names.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/406-list-of-available-v4-databases-serpstatdatabaseproceduregetdatabaseinfo/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/ba97ni814ao9p-search-engine-short-names}{here}.
 }
 
 \section{API credits consumption}{
@@ -34,7 +37,6 @@ country names.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
-sst_sa_database_info(api_token)$data
+sst_sa_database_info()$data
 }
 }

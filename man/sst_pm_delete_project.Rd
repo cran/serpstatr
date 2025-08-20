@@ -4,11 +4,14 @@
 \alias{sst_pm_delete_project}
 \title{Delete the existing project}
 \usage{
-sst_pm_delete_project(api_token, project_id = NULL)
+sst_pm_delete_project(
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN"),
+  project_id = NULL
+)
 }
 \arguments{
 \item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
+\href{https://serpstat.com/users/profile/}{your profile}.Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 
 \item{project_id}{(required) ID of the project in Serpstat.}
 }
@@ -20,7 +23,7 @@ Deletes the existing project in Serpstat by project ID.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/project-deletion/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/z6pip7gt8wqo0-delete-project}{here}.
 }
 
 \section{API credits consumption}{
@@ -29,9 +32,7 @@ Deletes the existing project in Serpstat by project ID.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_pm_delete_project(
-  api_token  = api_token,
   project_id = 12345
   )
 }

@@ -5,17 +5,14 @@
 \title{Domains summary}
 \usage{
 sst_sa_domains_info(
-  api_token,
   domains,
   se,
   sort = NULL,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{domains}{(required) A vector of domain names to analyze.}
 
 \item{se}{(required) Search engine alias (db_name) returned by
@@ -26,6 +23,9 @@ details.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns aggregated stats for each domain.
@@ -36,7 +36,7 @@ PPC, online visibility and other metrics.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/412-summarnij-otchet-po-domenu-v4-serpstatdomainproceduregetdomainsinfo/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/0c6vx6hzygijk-get-domains-info}{here}.
 }
 
 \section{API credits consumption}{
@@ -55,9 +55,7 @@ PPC, online visibility and other metrics.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_domains_info(
-  api_token     = api_token,
   domains       = c('amazon.com', 'ebay.com'),
   se            = 'g_us',
   return_method = 'df'

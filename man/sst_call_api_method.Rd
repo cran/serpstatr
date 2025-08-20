@@ -8,33 +8,17 @@ sst_call_api_method(api_token, api_method, api_params = NULL)
 }
 \arguments{
 \item{api_token}{Serpstat API token from the
-\href{https://serpstat.com/users/profile/}{profile page}.}
+\href{https://serpstat.com/users/profile/}{profile page}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 
 \item{api_method}{Internal name of API method.}
 
 \item{api_params}{A list of API parameters used by api_method. More
 information about parameters in the
-\href{https://serpstat.com/api/}{official docs}.}
+\href{https://api-docs.serpstat.com/docs/serpstat-public-api/jenasqbwtxdlr-introduction-to-serpstat-api}{official docs}.}
 }
 \value{
 The list with a response data.
 }
 \description{
 Make a request to Serpstat API endpoint
-}
-\examples{
-\donttest{
-api_params <- list(
-  query = 'serpstat.com',
-  page  = 1,
-  size  = 5
-  )
-tryCatch({
-  serpstatr:::sst_call_api_method(
-    api_token  = Sys.getenv('SERPSTAT_API_TOKEN'),
-    api_method = 'SerpstatLimitsProcedure.getStats',
-    api_params = api_params
-    )
-})
-}
 }

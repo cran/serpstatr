@@ -3,12 +3,12 @@
 #' Returns the overview of the backlinks profile for the domain.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/887-summary-report-getsummaryv2-new-version/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/ylg7q8n96yjci-get-summary-v2}{here}.
 #'
 #' @section API credits consumption: 1 per request.
 #'
 #' @param api_token (required) Serpstat API token from
-#'   \href{https://serpstat.com/users/profile/}{your profile}.
+#'   \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param domain (required) A domain name to analyze.
 #' @param search_type (optional) Default value is 'domain' for
 #'   domain only (site.com). See API docs for more details.
@@ -17,9 +17,7 @@
 #' @return Returns aggregated backlinks data for the domain.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_bl_domain_summary(
-#'   api_token     = api_token,
 #'   domain        = 'serpstat.com',
 #'   search_type   = 'domain',
 #'   return_method = 'list'
@@ -27,10 +25,10 @@
 #' }
 #' @export
 sst_bl_domain_summary <- function(
-    api_token,
     domain,
     search_type   = 'domain',
-    return_method = 'list'
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
 )
 {
   api_params      <- list(
@@ -51,7 +49,7 @@ sst_bl_domain_summary <- function(
 #' domain.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://serpstat.com/api/312-reffering-domains/}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/uhy05n77e38uy-get-ref-domains}{here}.
 #'
 #' @section API credits consumption: 1 per each domain in response.
 #'
@@ -60,7 +58,7 @@ sst_bl_domain_summary <- function(
 #'   defined using \code{order} argument.
 #'
 #' @param api_token (required) Serpstat API token from
-#'   \href{https://serpstat.com/users/profile/}{your profile}.
+#'   \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param domain (required) A domain name to analyze.
 #' @param search_type (required) Default value is 'domain' for domain data only
 #'   (site.com). See API docs for more details.
@@ -78,9 +76,7 @@ sst_bl_domain_summary <- function(
 #' @return Returns aggregated backlinks data for each referring domain.
 #' @examples
 #' \dontrun{
-#' api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 #' sst_bl_referring_domains(
-#'   api_token        = api_token,
 #'   domain           = 'serpstat.com',
 #'   page             = 1,
 #'   size             = 100,
@@ -92,7 +88,6 @@ sst_bl_domain_summary <- function(
 #' }
 #' @export
 sst_bl_referring_domains <- function(
-    api_token,
     domain,
     search_type      = 'domain',
     page             = 1,
@@ -100,7 +95,8 @@ sst_bl_referring_domains <- function(
     sort             = 'domain_rank',
     order            = 'desc',
     filter           = NULL,
-    return_method    = 'list'
+    return_method    = 'list',
+    api_token        = Sys.getenv('SERPSTAT_API_TOKEN')
 )
 {
   api_params      <- list(

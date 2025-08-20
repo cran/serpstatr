@@ -4,12 +4,14 @@
 \alias{sst_pm_create_project}
 \title{Create a new project}
 \usage{
-sst_pm_create_project(api_token, domain, name, groups = NULL)
+sst_pm_create_project(
+  domain,
+  name,
+  groups = NULL,
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
+)
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{domain}{(required) Domain to get data for.}
 
 \item{name}{(required) The name of the project. Can be different from the
@@ -17,6 +19,9 @@ domain.}
 
 \item{groups}{(optional) A list of project groups the project should be added
 to.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns the project ID for the created project.
@@ -26,7 +31,7 @@ Creates a new project in Serpstat.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/project-creation/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/s04fhpr4grvek-create-project}{here}.
 }
 
 \section{API credits consumption}{
@@ -35,9 +40,7 @@ Creates a new project in Serpstat.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_pm_create_project(
-  api_token = api_token,
   domain    = 'serpstat.com',
   name      = 'Serpstat'
   )$data$project_id

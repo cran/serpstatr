@@ -5,7 +5,6 @@
 \title{Phrase match keywords}
 \usage{
 sst_sa_keywords(
-  api_token,
   keyword,
   se,
   minusKeywords = NULL,
@@ -13,13 +12,11 @@ sst_sa_keywords(
   filters = NULL,
   page = 1,
   size = 100,
-  return_method = "list"
+  return_method = "list",
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
 \arguments{
-\item{api_token}{(required) Serpstat API token from
-\href{https://serpstat.com/users/profile/}{your profile}.}
-
 \item{keyword}{(required) A keyword to search for.}
 
 \item{se}{(required) Search engine alias (db_name) returned by
@@ -40,6 +37,9 @@ details.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}
+
+\item{api_token}{(required) Serpstat API token from
+\href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 }
 \value{
 Returns a number of metrics for each keyword.
@@ -51,7 +51,7 @@ level.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://serpstat.com/api/592-keywords-for-v4-words-serpstatkeywordproceduregetkeywords/}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/w7jh5sk9kc0cm-get-keywords}{here}.
 }
 
 \section{API credits consumption}{
@@ -80,9 +80,7 @@ level.
 
 \examples{
 \dontrun{
-api_token <- Sys.getenv('SERPSTAT_API_TOKEN')
 sst_sa_keywords(
-  api_token     = api_token,
   keyword       = 'serpstat',
   se            = 'g_us',
   minusKeywords = c('free'),
