@@ -12,6 +12,7 @@ sst_sa_keywords(
   filters = NULL,
   page = 1,
   size = 100,
+  with_intents = TRUE,
   return_method = "list",
   api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
@@ -34,6 +35,8 @@ details.}
 \item{page}{(optional) Response page number if there are many pages in response.}
 
 \item{size}{(optional) Response page size.}
+
+\item{with_intents}{(optional) TRUE if keyword intent should be retrieved. This parameter works for g_ua and g_us database only.}
 
 \item{return_method}{(optional) Accepted values are 'list' (default) to
 return data object as list or 'df' to return data object as data.frame.}

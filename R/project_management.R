@@ -14,6 +14,8 @@
 #'   domain.
 #' @param groups (optional) A list of project groups the project should be added
 #'   to.
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
 #' @return Returns the project ID for the created project.
 #' @examples
 #' \dontrun{
@@ -26,8 +28,9 @@
 sst_pm_create_project <- function(
     domain,
     name,
-    groups    = NULL,
-    api_token = Sys.getenv('SERPSTAT_API_TOKEN')
+    groups        = NULL,
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
   api_params <- list(
     domain = domain,
@@ -39,7 +42,7 @@ sst_pm_create_project <- function(
     api_method = 'ProjectProcedure.createProject',
     api_params = api_params
     )
-  return(response_content)
+  sst_return_check(response_content, return_method)
 }
 
 #' Delete the existing project
@@ -54,6 +57,8 @@ sst_pm_create_project <- function(
 #' @param api_token (required) Serpstat API token from
 #'   \href{https://serpstat.com/users/profile/}{your profile}.Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param project_id (required) ID of the project in Serpstat.
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
 #' @return Returns the state of the deletion operation.
 #' @examples
 #' \dontrun{
@@ -63,8 +68,9 @@ sst_pm_create_project <- function(
 #' }
 #' @export
 sst_pm_delete_project <- function(
-    api_token  = Sys.getenv('SERPSTAT_API_TOKEN'),
-    project_id = NULL
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN'),
+    project_id    = NULL,
+    return_method = 'list'
     ){
   api_params       <- list(project_id = project_id)
   response_content <- sst_call_api_method(
@@ -72,7 +78,7 @@ sst_pm_delete_project <- function(
     api_method = 'ProjectProcedure.deleteProject',
     api_params = api_params
     )
-  return(response_content)
+  sst_return_check(response_content, return_method)
   }
 
 #' List existing projects

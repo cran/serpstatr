@@ -75,7 +75,7 @@ This method method returns the rankings for specified domain is selected
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/6abhpt8t9magu-get-urls-serp-results-history}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/10db1d2228e1d-get-urls-serp-results-history}{here}.
 }
 
 \section{API credits consumption}{

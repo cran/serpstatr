@@ -6,7 +6,8 @@
 \usage{
 sst_au_get_summary(
   api_token = Sys.getenv("SERPSTAT_API_TOKEN"),
-  report_id = NULL
+  report_id = NULL,
+  return_method = "list"
 )
 }
 \arguments{
@@ -14,6 +15,9 @@ sst_au_get_summary(
 \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 
 \item{report_id}{(required) ID of the audit report to get data from.}
+
+\item{return_method}{(optional) Accepted values are 'list' (default) to
+return data object as list or 'df' to return data object as data.frame.}
 }
 \value{
 Returns the basic metrics for audited website.

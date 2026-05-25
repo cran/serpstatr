@@ -132,4 +132,4 @@ Issues
 ------
 
 Send all issues on [GitLab
-page](https://gitlab.com/alexdanilin/serpstatr/-/issues).
+page](https://gitlab.com/alexdanilin/serpstatr/-/work_items).

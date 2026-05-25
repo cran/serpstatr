@@ -491,6 +491,7 @@ sst_sa_keywords_info <- function(
 #'   details.
 #' @param page (optional) Response page number if there are many pages in response.
 #' @param size (optional) Response page size.
+#' @param with_intents (optional) TRUE if keyword intent should be retrieved. This parameter works for g_ua and g_us database only.
 #' @inheritParams sst_sa_database_info
 #' @inheritSection sst_sa_domain_keywords Sorting
 #' @inheritSection sst_sa_domain_keywords Filtering
@@ -516,6 +517,7 @@ sst_sa_keywords <- function(
     filters       = NULL,
     page          = 1,
     size          = 100,
+    with_intents  = TRUE,
     return_method = 'list',
     api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
     ){
@@ -523,9 +525,11 @@ sst_sa_keywords <- function(
     keyword       = keyword,
     se            = se,
     minusKeywords = as.list(minusKeywords),
+    filters       = filters,
     sort          = sort,
     page          = page,
-    size          = size
+    size          = size,
+    withIntents   = with_intents
   )
   response_content <- sst_call_api_method(
     api_token  = api_token,

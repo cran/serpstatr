@@ -77,7 +77,7 @@ This method method returns the competing in top20 search results domains
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/wm6nv6iuemkrv-get-top-competitors-domains-history}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/7ec8cf3b3ae68-get-top-competitors-domains-history}{here}.
 }
 
 \section{API credits consumption}{

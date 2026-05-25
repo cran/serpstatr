@@ -4,13 +4,20 @@
 \alias{sst_au_start}
 \title{Start a website audit}
 \usage{
-sst_au_start(api_token = Sys.getenv("SERPSTAT_API_TOKEN"), project_id = NULL)
+sst_au_start(
+  api_token = Sys.getenv("SERPSTAT_API_TOKEN"),
+  project_id = NULL,
+  return_method = "list"
+)
 }
 \arguments{
 \item{api_token}{(required) Serpstat API token from
 \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}
 
 \item{project_id}{(required) ID of the project in Serpstat.}
+
+\item{return_method}{(optional) Accepted values are 'list' (default) to
+return data object as list or 'df' to return data object as data.frame.}
 }
 \value{
 Returns the ID of the audit report.

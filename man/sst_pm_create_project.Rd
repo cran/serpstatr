@@ -8,6 +8,7 @@ sst_pm_create_project(
   domain,
   name,
   groups = NULL,
+  return_method = "list",
   api_token = Sys.getenv("SERPSTAT_API_TOKEN")
 )
 }
@@ -19,6 +20,9 @@ domain.}
 
 \item{groups}{(optional) A list of project groups the project should be added
 to.}
+
+\item{return_method}{(optional) Accepted values are 'list' (default) to
+return data object as list or 'df' to return data object as data.frame.}
 
 \item{api_token}{(required) Serpstat API token from
 \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').}

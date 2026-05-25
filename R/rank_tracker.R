@@ -5,7 +5,7 @@
 #' You will need the results of this method to get rankings in selected region.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/frxvm29tz3s6e-get-project-regions}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/a8f5bbf27001a-get-project-regions}{here}.
 #'
 #' @section API credits consumption: 0
 #'
@@ -45,7 +45,7 @@ sst_rt_project_regions <- function(
 #' This method returns top 100 search results in Google.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/3x0bjg0i2r94w-get-keywords-serp-results-history}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/571085d3951b6-get-keywords-serp-results-history}{here}.
 #'
 #'
 #' @section API credits consumption: 0
@@ -134,7 +134,7 @@ sst_rt_serp_history <- function(
 #'   search region.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/6abhpt8t9magu-get-urls-serp-results-history}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/10db1d2228e1d-get-urls-serp-results-history}{here}.
 #'
 #'
 #' @section API credits consumption: 0
@@ -209,7 +209,7 @@ sst_rt_positions_history <- function(
 #'   that rank for at least two keywords that are added the project.
 #'
 #' @section API docs:
-#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/wm6nv6iuemkrv-get-top-competitors-domains-history}{here}.
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/7ec8cf3b3ae68-get-top-competitors-domains-history}{here}.
 #'
 #' @section API credits consumption: 0
 #'

@@ -1,3 +1,7 @@
+# serpstatr 0.4.1
+
+* Added `with_intents` parameter to `sst_sa_keywords()` and fixed passing of `filters` parameter in API request.
+
 # serpstatr 0.4.0
 
 * Added `sst_sa_domain_regions_count()` to get the number of keywords per regions for a domain.

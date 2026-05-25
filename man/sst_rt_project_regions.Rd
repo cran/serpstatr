@@ -33,7 +33,7 @@ You will need the results of this method to get rankings in selected region.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/frxvm29tz3s6e-get-project-regions}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/a8f5bbf27001a-get-project-regions}{here}.
 }
 
 \section{API credits consumption}{

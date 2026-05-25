@@ -45,5 +45,10 @@ Useful links:
 \author{
 \strong{Maintainer}: Alex Danilin \email{alexnikdanilin@gmail.com}
 
+Authors:
+\itemize{
+  \item Alex Danilin \email{alexnikdanilin@gmail.com}
+}
+
 }
 \keyword{internal}

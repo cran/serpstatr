@@ -1,7 +1,7 @@
 Package: serpstatr
 Type: Package
 Title: 'Serpstat' API Wrapper
-Version: 0.4.0
+Version: 0.4.1
 Authors@R: person('Alex', 'Danilin', email = 'alexnikdanilin@gmail.com',
     role = c('aut', 'cre'))
 URL:
@@ -13,11 +13,11 @@ Description: The primary goal of 'Serpstat' API <https://api-docs.serpstat.com/d
 License: MIT + file LICENSE
 Encoding: UTF-8
 Imports: httr (>= 1.4.2)
-RoxygenNote: 7.3.2
 Suggests: testthat
+Config/roxygen2/version: 8.0.0
 NeedsCompilation: no
-Packaged: 2025-08-20 12:32:48 UTC; Mrbubu
+Packaged: 2026-05-25 13:39:31 UTC; mrbubu
 Author: Alex Danilin [aut, cre]
 Maintainer: Alex Danilin <alexnikdanilin@gmail.com>
 Repository: CRAN
-Date/Publication: 2025-08-20 12:50:07 UTC
+Date/Publication: 2026-05-25 13:50:02 UTC

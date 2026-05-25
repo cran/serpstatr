@@ -11,6 +11,8 @@
 #' @param api_token (required) Serpstat API token from
 #'   \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param project_id (required) ID of the project in Serpstat.
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
 #' @return Returns the ID of the audit report.
 #' @examples
 #' \dontrun{
@@ -19,14 +21,14 @@
 #'   )$data$reportId
 #' }
 #' @export
-sst_au_start <- function(api_token = Sys.getenv('SERPSTAT_API_TOKEN'), project_id = NULL){
+sst_au_start <- function(api_token = Sys.getenv('SERPSTAT_API_TOKEN'), project_id = NULL, return_method = 'list'){
   api_params       <- list(projectId = project_id)
   response_content <- sst_call_api_method(
     api_token = api_token,
     api_method = 'AuditSite.start',
     api_params = api_params
     )
-  return(response_content)
+  sst_return_check(response_content, return_method)
 }
 
 #' Website audit summary
@@ -42,6 +44,8 @@ sst_au_start <- function(api_token = Sys.getenv('SERPSTAT_API_TOKEN'), project_i
 #' @param api_token (required) Serpstat API token from
 #'   \href{https://serpstat.com/users/profile/}{your profile}. Default is Sys.getenv('SERPSTAT_API_TOKEN').
 #' @param report_id (required) ID of the audit report to get data from.
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
 #' @return Returns the basic metrics for audited website.
 #' @examples
 #' \dontrun{
@@ -50,12 +54,12 @@ sst_au_start <- function(api_token = Sys.getenv('SERPSTAT_API_TOKEN'), project_i
 #'   )$data
 #' }
 #' @export
-sst_au_get_summary <- function(api_token = Sys.getenv('SERPSTAT_API_TOKEN'), report_id = NULL){
+sst_au_get_summary <- function(api_token = Sys.getenv('SERPSTAT_API_TOKEN'), report_id = NULL, return_method = 'list'){
   api_params       <- list(reportId = report_id)
   response_content <- sst_call_api_method(
     api_token  = api_token,
     api_method = 'AuditSite.getBasicInfo',
     api_params = api_params
     )
-  return(response_content)
+  sst_return_check(response_content, return_method)
 }

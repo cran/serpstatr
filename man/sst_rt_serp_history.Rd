@@ -69,7 +69,7 @@ This method returns top 100 search results in Google.
 }
 \section{API docs}{
 
- Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/3x0bjg0i2r94w-get-keywords-serp-results-history}{here}.
+ Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/571085d3951b6-get-keywords-serp-results-history}{here}.
 }
 
 \section{API credits consumption}{

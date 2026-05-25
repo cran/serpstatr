@@ -8,36 +8,37 @@
 #'   \href{https://api-docs.serpstat.com/docs/serpstat-public-api/jenasqbwtxdlr-introduction-to-serpstat-api}{official docs}.
 #' @return The list with a response data.
 sst_call_api_method <- function(api_token, api_method, api_params = NULL) {
-  if (is.null(api_token) || api_token == "") {
+  if (is.null(api_token) || length(api_token) != 1 || is.na(api_token) || api_token == "") {
     stop("API token is not set. Please set your Serpstat API token. You can find it here: https://serpstat.com/users/profile/")
   }
-  tryCatch({
-    api_response <- httr::POST(
-      url    = 'http://api.serpstat.com/v4',
+  api_response <- tryCatch({
+    httr::POST(
+      url    = "https://api.serpstat.com/v4",
       body   = list(
-        id     = as.numeric(Sys.time()) * 1000,
+        id     = round(as.numeric(Sys.time()) * 1000),
         method = api_method,
         params = api_params
-        ),
-      encode = 'json',
+      ),
+      encode = "json",
       httr::add_headers(token = api_token)
-      )
-    api_response <- httr::content(api_response)
-
-    if('list' %in% class(api_response)) {
-      return(api_response)
-    } else {
-      stop(
-        paste0(
-          'There is a problem with Serpstat API. If you get this error, ',
-          'please contact support at https://serpstat.com/support/ ',
-          'with the details of what you are doing.'
-          )
-        )
-    }
+    )
   }, error = function(e) {
-    print(e)
+    stop("Serpstat API connection failed: ", e$message)
   })
+
+  parsed_response <- httr::content(api_response, as = "parsed", type = "application/json")
+
+  if (is.list(parsed_response)) {
+    return(parsed_response)
+  } else {
+    stop(
+      paste0(
+        "There is a problem with Serpstat API. If you get this error, ",
+        "please contact support at https://serpstat.com/support/ ",
+        "with the details of what you are doing."
+      )
+    )
+  }
 }
 
 #' Preprocess the API response
@@ -101,7 +102,10 @@ sst_return_check <- function(response_content, return_method) {
 #'   fill  = 'empty'
 #' )
 #' @export
-sst_lists_to_df <- function(lists, fill = NA){
+sst_lists_to_df <- function(lists, fill = NA) {
+  if (length(lists) == 0) {
+    return(data.frame())
+  }
   column_names  <- unique(unlist(lapply(lists, names)))
   if(!is.null(column_names)){
     lists <- lapply(lists, function(x){
@@ -112,9 +116,13 @@ sst_lists_to_df <- function(lists, fill = NA){
       single_list <- single_list[order(names(single_list))]
     })
   }
-  data_frame <- data.frame(do.call(rbind, lists),
+  
+  bound_matrix <- do.call(rbind, lists)
+  data_frame <- data.frame(bound_matrix,
                            row.names        = NULL,
                            stringsAsFactors = FALSE)
-  if(is.null(column_names)) names(data_frame) <- 'column'
+  if(is.null(column_names) && ncol(data_frame) > 0) {
+    names(data_frame) <- 'column'
+  }
   return(data_frame)
 }
