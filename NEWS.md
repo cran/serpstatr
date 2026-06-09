@@ -1,3 +1,7 @@
+# serpstatr 0.4.2
+
+* Added `sst_sa_keyword_trends()` function to retrieve monthly keyword search volume trends.
+
 # serpstatr 0.4.1
 
 * Added `with_intents` parameter to `sst_sa_keywords()` and fixed passing of `filters` parameter in API request.

@@ -639,3 +639,49 @@ sst_sa_related_keywords <- function(
     )
   sst_return_check(response_content, return_method)
 }
+
+#' Keyword trends
+#'
+#' Returns monthly search volume trends for a list of keywords over a specified period (up to 48 months).
+#' You can send up to 100 keywords per request.
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/kw3t8rn5vx1qm-get-keyword-trends}{here}.
+#'
+#' @section API credits consumption: 10 credits per keyword that returned data. If no keywords returned data — 1 credit is charged for the whole request.
+#'
+#' @param keywords (required) A vector of keywords to analyze.
+#' @param se (required) Search engine alias (db_name) returned by
+#'     \code{\link{sst_sa_database_info}}.
+#' @param months (optional) Number of months to get data for (up to 48). Default is 48.
+#' @inheritParams sst_sa_database_info
+#' @return Returns monthly search volume trends for each keyword.
+#' @examples
+#' \dontrun{
+#' sst_sa_keyword_trends(
+#'   keywords      = c('seo', 'ppc', 'serpstat'),
+#'   se            = 'g_us',
+#'   months        = 12,
+#'   return_method = 'df'
+#' )$data
+#' }
+#' @export
+sst_sa_keyword_trends <- function(
+    keywords,
+    se,
+    months        = 48,
+    return_method = 'list',
+    api_token     = Sys.getenv('SERPSTAT_API_TOKEN')
+    ){
+  api_params <- list(
+    keywords = as.list(keywords),
+    se       = se,
+    months   = months
+  )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'SerpstatKeywordProcedure.getKeywordTrends',
+    api_params = api_params
+  )
+  sst_return_check(response_content, return_method)
+}

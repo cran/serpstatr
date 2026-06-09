@@ -1,7 +1,7 @@
 Package: serpstatr
 Type: Package
 Title: 'Serpstat' API Wrapper
-Version: 0.4.1
+Version: 0.4.2
 Authors@R: person('Alex', 'Danilin', email = 'alexnikdanilin@gmail.com',
     role = c('aut', 'cre'))
 URL:
@@ -16,8 +16,8 @@ Imports: httr (>= 1.4.2)
 Suggests: testthat
 Config/roxygen2/version: 8.0.0
 NeedsCompilation: no
-Packaged: 2026-05-25 13:39:31 UTC; mrbubu
+Packaged: 2026-06-09 16:53:56 UTC; mrbubu
 Author: Alex Danilin [aut, cre]
 Maintainer: Alex Danilin <alexnikdanilin@gmail.com>
 Repository: CRAN
-Date/Publication: 2026-05-25 13:50:02 UTC
+Date/Publication: 2026-06-09 17:10:03 UTC

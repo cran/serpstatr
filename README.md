@@ -42,6 +42,7 @@ Call functions to get keywords data:
     stats
 -   sst\_sa\_related\_keywords() - semantically related keywords for a given keyword
 -   sst\_sa\_keyword\_top() - get list of URLs from SERP for a keyword
+-   sst\_sa\_keyword\_trends() - monthly search volume trends for a list of keywords
 
 <!-- -->
 
