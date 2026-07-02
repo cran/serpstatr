@@ -11,11 +11,20 @@ sst_call_api_method <- function(api_token, api_method, api_params = NULL) {
   if (is.null(api_token) || length(api_token) != 1 || is.na(api_token) || api_token == "") {
     stop("API token is not set. Please set your Serpstat API token. You can find it here: https://serpstat.com/users/profile/")
   }
+
+  api_url <- "https://api.serpstat.com/v4"
+  id_val  <- round(as.numeric(Sys.time()) * 1000)
+
+  if (!is.null(api_method) && startsWith(api_method, "tasks.")) {
+    api_url <- "https://serpstat.com/rt/api/v2/"
+    id_val  <- paste0("r-", format(Sys.time(), "%Y%m%d%H%M%S"))
+  }
+
   api_response <- tryCatch({
     httr::POST(
-      url    = "https://api.serpstat.com/v4",
+      url    = api_url,
       body   = list(
-        id     = round(as.numeric(Sys.time()) * 1000),
+        id     = id_val,
         method = api_method,
         params = api_params
       ),

@@ -122,6 +122,20 @@ Call functions to manage your projects:
       name      = 'Serpstat'
       )$data$project_id
 
+6. SERP Crawling (Scraper)
+
+Call functions to parse and crawl search engine results:
+
+-   sst_sc_add_task() - add a crawling task
+-   sst_sc_get_task_result() - get crawling task result
+
+<!-- -->
+
+    sst_sc_add_task(
+      keywords   = c("explain the gauss rifle principle", "why iphone better than samsung"),
+      country_id = 23
+    )$data$taskId
+
 Installation
 ------------
 

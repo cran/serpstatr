@@ -1,3 +1,9 @@
+# serpstatr 0.4.3
+
+* Added SERP Scraper/Crawling API functions:
+  * `sst_sc_add_task()` to submit keywords for crawling.
+  * `sst_sc_get_task_result()` to retrieve crawling results.
+
 # serpstatr 0.4.2
 
 * Added `sst_sa_keyword_trends()` function to retrieve monthly keyword search volume trends.
