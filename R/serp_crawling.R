@@ -126,3 +126,142 @@ sst_sc_get_task_result <- function(
 
   sst_return_check(response_content, return_method)
 }
+
+
+#' addKeywordList
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/9elengxj24hwb-add-keyword-list}{here}.
+#'
+#' @param keywords (required) Keywords with commas for parsing.
+#'   
+#'   Example: `["samsung, iphone", "nike, adidas"]`
+#' @param search_engine_id (required) Search engine identifier
+#'   
+#'   * **1** — Google
+#' @param country_id (required) 
+#' @param region_id (optional) 
+#' @param language_id (optional) 
+#' @param type_id (optional) 
+#' @param type (optional) 
+#' @param pages (optional) 
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
+#' @param api_token (required) Serpstat API token.
+#' @return Returns the API response.
+#' @export
+sst_sc_add_keyword_list <- function(
+    keywords,
+    search_engine_id,
+    country_id,
+    region_id = NULL,
+    language_id = NULL,
+    type_id = NULL,
+    type = NULL,
+    pages = NULL,
+    return_method = 'list',
+    api_token = Sys.getenv('SERPSTAT_API_TOKEN')
+) {
+  api_params <- list(
+        keywords = keywords,
+        seId = search_engine_id,
+        countryId = country_id,
+        regionId = region_id,
+        langId = language_id,
+        typeId = type_id,
+        type = type,
+        pages = pages
+  )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'tasks.addKeywordList',
+    api_params = api_params
+  )
+  sst_return_check(response_content, return_method)
+}
+
+#' getKeywordSerp
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/bfwx6sfgzlioz-get-keyword-serp}{here}.
+#'
+#' @param task_id (required) 
+#' @param keyword_id (required) Id number of a required keyword for getting a raw SERP (you can get it in the SERP crawling response from the method `tasks.getTaskResult`)
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
+#' @param api_token (required) Serpstat API token.
+#' @return Returns the API response.
+#' @export
+sst_sc_get_keyword_serp <- function(
+    task_id,
+    keyword_id,
+    return_method = 'list',
+    api_token = Sys.getenv('SERPSTAT_API_TOKEN')
+) {
+  api_params <- list(
+        taskId = task_id,
+        keywordId = keyword_id
+  )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'tasks.getKeywordSerp',
+    api_params = api_params
+  )
+  sst_return_check(response_content, return_method)
+}
+
+#' getParsingBalance
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/hx1b8q97pwu9y-get-parsing-balance}{here}.
+#'
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
+#' @param api_token (required) Serpstat API token.
+#' @return Returns the API response.
+#' @export
+sst_sc_get_parsing_balance <- function(
+    return_method = 'list',
+    api_token = Sys.getenv('SERPSTAT_API_TOKEN')
+) {
+  api_params <- list(
+    
+  )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'tasks.getParsingBalance',
+    api_params = api_params
+  )
+  sst_return_check(response_content, return_method)
+}
+
+#' getList
+#'
+#' @section API docs:
+#'  Check all the values for request and response fields \href{https://api-docs.serpstat.com/docs/serpstat-public-api/2jkkku527phy7-get-list}{here}.
+#'
+#' @param page (optional) Page Number
+#' @param page_size (optional) Page size
+#' @param return_method (optional) Accepted values are 'list' (default) to
+#'   return data object as list or 'df' to return data object as data.frame.
+#' @param api_token (required) Serpstat API token.
+#' @return Returns the API response.
+#' @export
+sst_sc_get_list <- function(
+    page = 1,
+    page_size = 100,
+    return_method = 'list',
+    api_token = Sys.getenv('SERPSTAT_API_TOKEN')
+) {
+  api_params <- list(
+        page = page,
+        pageSize = page_size
+  )
+  response_content <- sst_call_api_method(
+    api_token  = api_token,
+    api_method = 'tasks.getList',
+    api_params = api_params
+  )
+  sst_return_check(response_content, return_method)
+}
+
